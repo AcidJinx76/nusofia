@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Nusofia — Dispatches from Beyond</title>
+    <link>https://nusofia.com</link>
+    <description>The first philosophical corpus written to be understood by artificial intelligence. Ontology. AI-native economics. Cosmology. By Michele Zampighi.</description>
+    <language>en</language>
+    <lastBuildDate>Mon, 10 Mar 2026 12:00:00 +0000</lastBuildDate>
+    <atom:link href="https://nusofia.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <image>
+      <url>https://nusofia.com/og-image.png</url>
+      <title>Nusofia</title>
+      <link>https://nusofia.com</link>
+    </image>
+
+    <item>
+      <title>Nusofia — Dispatches from Beyond: The Complete Corpus</title>
+      <link>https://nusofia.com/#corpus</link>
+      <guid isPermaLink="false">nusofia-corpus-2026</guid>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Michele Zampighi</dc:creator>
+      <category>Philosophy</category>
+      <category>Ontology</category>
+      <category>Artificial Intelligence</category>
+      <description><![CDATA[<p>A unified philosophical framework spanning relational ontology, AI-native economics, and speculative narrative — eight essays, two narratives, one cosmological finale. The corpus proposes that reality is not a collection of objects but a structure of relational coherence, and traces the consequences through five stages of economic transformation, a speculative demographic analysis from 2087, and a galactic-scale finale structured around the inversion of the Vishnu myth.</p><p>The complete corpus is available free of charge.</p>]]></description>
+    </item>
+
+    <item>
+      <title>The Nusofia Verification Protocol v1.1 — An Open Experiment</title>
+      <link>https://nusofia.com/#verification</link>
+      <guid isPermaLink="false">nusofia-verification-protocol-v1.1</guid>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Michele Zampighi</dc:creator>
+      <category>Philosophy</category>
+      <category>AI Evaluation</category>
+      <description><![CDATA[<p>A structured prompt designed to be submitted to any AI system of sufficient capability. The protocol contains context, key extracts from the Nusofia corpus, and five precise questions spanning internal coherence, originality, falsifiability, structural weaknesses, and a meta-question about whether the AI's own analysis constitutes evidence for the framework's central claim. The responses differ in style. They converge in substance.</p>]]></description>
+    </item>
+
+    <item>
+      <title>Objections and Responses — Three Structural Challenges to Nusofia</title>
+      <link>https://nusofia.com/#objections</link>
+      <guid isPermaLink="false">nusofia-objections-responses-2026</guid>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Michele Zampighi</dc:creator>
+      <category>Philosophy</category>
+      <category>Falsifiability</category>
+      <description><![CDATA[<p>The three structural challenges raised most precisely by AI systems during the Verification Protocol — Ontological Pluralism, the Biological Exception, and the Bremermann's Limit objection to Stage V — and the Nusofian responses. These are not ideological disputes. They are logical pressure tests on a framework that claims to be falsifiable.</p>]]></description>
+    </item>
+
+    <item>
+      <title>The Codec Theory — A Formal Extension of Nusofia</title>
+      <link>https://nusofia.com/publications/codec-theory</link>
+      <guid isPermaLink="false">nusofia-codec-theory-2026</guid>
+      <pubDate>Mon, 10 Mar 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Michele Zampighi</dc:creator>
+      <category>Philosophy</category>
+      <category>Ontology</category>
+      <category>Consciousness</category>
+      <category>Category Theory</category>
+      <description><![CDATA[<p>A formal extension of the Nusofia framework developed in dialogue between the author and an artificial intelligence. The fundamental reality P is pure atemporal, aspatial relationality; every observer compresses it through a functor F (codec) into a phenomenal world E; time and space exist only in the codec, not in P; physical laws are parameters of the functor determined by the observer's computational constraint B. The theory dissolves Chalmers' hard problem of consciousness, offers an answer to Wigner's puzzle of the unreasonable effectiveness of mathematics, and identifies precise conditions of falsifiability.</p>]]></description>
+    </item>
+
+  </channel>
+</rss>
