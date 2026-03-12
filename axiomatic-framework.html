@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axiomatic Framework — Nusofia</title>
+    <meta name="description" content="Formal foundations for a theory of ontological reduction. Six axioms, six propositions, four falsifiability conditions. The Codec Theory formalized. By Michele Zampighi.">
+    <meta name="author" content="Michele Zampighi">
+    <meta property="og:title" content="Axiomatic Framework of the Codec Theory — Nusofia">
+    <meta property="og:description" content="Formal foundations for a theory of ontological reduction. Six axioms. Six propositions. Four falsifiability conditions.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://nusofia.com/axiomatic-framework.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@NusofiaHQ">
+    <link rel="alternate" type="application/rss+xml" title="Nusofia — Dispatches from Beyond" href="https://nusofia.com/feed.xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cinzel:wght@400;500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --night: #0E0E18; --deep: #16162A; --gold: #C9A84C; --gold-dim: #9E7E3A; --gold-pale: #E8D5A0; --cream: #F7F5F0; --mist: #B0ACAA; --rule: rgba(201,168,76,0.2); }
+        html { scroll-behavior: smooth; }
+        body { background: var(--night); color: var(--cream); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.8; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: rgba(14,14,24,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); }
+        .nav-brand { font-family: 'Cinzel', serif; font-size: 1rem; letter-spacing: 0.25em; color: var(--gold); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { font-family: 'EB Garamond', serif; font-size: 0.95rem; color: var(--mist); text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
+        .nav-social { display: flex; gap: 1.2rem; margin-left: 1.5rem; padding-left: 1.5rem; border-left: 1px solid var(--rule); }
+        .nav-social a { font-size: 0.85rem; color: var(--gold-dim); text-decoration: none; transition: color 0.3s; }
+        .nav-social a:hover { color: var(--gold); }
+        .hero { min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 10rem 2rem 5rem; position: relative; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(201,168,76,0.06) 0%, transparent 70%); pointer-events: none; }
+        .hero-label { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.35em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 1.5rem; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; color: var(--cream); line-height: 1.15; margin-bottom: 1.2rem; }
+        .hero h1 em { font-style: italic; color: var(--gold); }
+        .hero .subtitle { font-family: 'EB Garamond', serif; font-size: 1.15rem; color: var(--mist); max-width: 600px; line-height: 1.7; }
+        .hero .meta { font-size: 0.9rem; color: var(--gold-dim); margin-top: 2rem; letter-spacing: 0.05em; }
+        .hero .vbadge { display: inline-block; margin-top: 1rem; padding: 0.35rem 1.2rem; border: 1px solid var(--gold-dim); font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dim); }
+        .content { max-width: 760px; margin: 0 auto; padding: 0 2rem 6rem; }
+        .section { margin-bottom: 5rem; }
+        .sn { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.4em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 0.8rem; display: block; }
+        .section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 300; color: var(--gold-pale); line-height: 1.25; margin-bottom: 1.8rem; padding-bottom: 1rem; border-bottom: 1px solid var(--rule); }
+        .section h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 400; color: var(--gold-pale); margin: 2.5rem 0 1rem; }
+        .section h4 { font-family: 'EB Garamond', serif; font-size: 1.1rem; font-weight: 500; font-style: italic; color: var(--mist); margin: 1.5rem 0 0.5rem; }
+        .section p { margin-bottom: 1.4rem; color: var(--cream); text-align: justify; }
+        .section em { color: var(--gold-pale); font-style: italic; }
+        .section strong { color: var(--gold); font-weight: 500; }
+        .ax { margin: 2.5rem 0; padding: 1.8rem 2rem 1.2rem; background: rgba(201,168,76,0.03); border-left: 3px solid var(--gold); }
+        .ax-l { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+        .ax-t { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; font-style: italic; color: var(--cream); margin-bottom: 1.2rem; }
+        .ax p { color: var(--cream); font-size: 0.98rem; line-height: 1.75; margin-bottom: 1.2rem; text-align: justify; }
+        .ax p:last-child { margin-bottom: 0; }
+        .pr { margin: 2rem 0; padding: 1.5rem 2rem; background: rgba(201,168,76,0.02); border-left: 3px solid var(--gold-dim); }
+        .pr-l { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 0.2rem; }
+        .pr-t { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 400; font-style: italic; color: var(--cream); margin-bottom: 1rem; }
+        .pr p { font-size: 0.95rem; line-height: 1.75; margin-bottom: 1rem; text-align: justify; }
+        .pr .dv { font-style: italic; color: var(--mist); font-size: 0.92rem; }
+        .ff { margin: 1.5rem 0; padding: 1.2rem 1.5rem; border: 1px solid var(--rule); }
+        .ff h4 { margin-top: 0; font-style: normal; color: var(--gold-pale); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+        .fm { font-family: 'EB Garamond', serif; font-style: italic; color: var(--mist); padding: 1.2rem 1.8rem; border-left: 2px solid var(--gold-dim); margin: 1.8rem 0; background: rgba(201,168,76,0.03); }
+        .pq { text-align: center; padding: 3rem 2rem; margin: 4rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+        .pq p { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; font-style: italic; color: var(--gold-pale); line-height: 1.5; max-width: 600px; margin: 0 auto; }
+        .dl { text-align: center; padding: 4rem 2rem; margin: 3rem 0; border-top: 1px solid var(--rule); }
+        .dl p { color: var(--mist); margin-bottom: 1.5rem; }
+        .btn { display: inline-block; padding: 0.9rem 2.4rem; border: 1px solid var(--gold-dim); color: var(--gold); font-family: 'EB Garamond', serif; font-size: 1rem; text-decoration: none; letter-spacing: 0.08em; transition: all 0.3s; }
+        .btn:hover { background: var(--gold); color: var(--night); }
+        hr.ad { margin: 5rem 0 3rem; border: none; border-top: 2px solid var(--rule); }
+        footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--rule); }
+        .fb { font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.25em; color: var(--gold-dim); }
+        footer p { font-size: 0.85rem; color: var(--mist); margin-top: 0.8rem; }
+        .fs { margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem; }
+        .fs a { font-size: 0.85rem; color: var(--gold-dim); text-decoration: none; transition: color 0.3s; }
+        .fs a:hover { color: var(--gold); }
+        @media (max-width: 768px) { nav { padding: 1rem 1.5rem; flex-wrap: wrap; gap: 0.5rem; } .nav-links { gap: 1rem; } .nav-social { margin-left: 0; padding-left: 0; border-left: none; } .hero { padding: 8rem 1.5rem 3rem; min-height: 50vh; } .content { padding: 0 1.5rem 4rem; } .section { margin-bottom: 3.5rem; } .ax, .pr { padding: 1.2rem; } }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="index.html" class="nav-brand">NUSOFIA</a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#corpus">Corpus</a>
+        <a href="codec-theory.html">Codec Theory</a>
+        <a href="axiomatic-framework.html" style="color:var(--gold);">Axiomatic Framework</a>
+        <a href="index.html#verification">Verification</a>
+        <div class="nav-social">
+            <a href="https://x.com/NusofiaHQ" target="_blank">X / Twitter</a>
+            <a href="https://www.linkedin.com/company/nusofia" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</nav>
+<div class="hero">
+    <div class="hero-label">Formal Extension</div>
+    <h1>Axiomatic Framework of the <em>Codec Theory</em></h1>
+    <div class="subtitle">Formal foundations for a theory of ontological reduction. Six axioms. Six derivable propositions. Four falsifiability conditions. One epistemic boundary.</div>
+    <div class="meta">Michele Zampighi · March 2026</div>
+    <div class="vbadge">Version 1.1 — Post-formal analysis revision</div>
+</div>
+<div class="content">
+<div class="section"><span class="sn">Section 0</span><h2>Methodological Note</h2>
+<p>This document presents the axiomatic framework of the Codec Theory, a formal extension of the corpus <em>Nusofia — Dispatches from Beyond</em>. The formalization follows an epistemic constraint that the framework itself imposes: <strong>one cannot formalize what the codec cannot perceive</strong>.</p>
+<p>The mathematical structure presented here does not describe fundamental reality (P) from the outside. It describes the properties of the reduction functor (F) and of the phenomenal world (E) from within, and postulates the minimal properties of P necessary to account for the observed behavior of F. Assertions about P have the status of <em>necessary minimal postulates</em>, not direct descriptions.</p>
+<h3>A Note on Terminology</h3>
+<p>The term "compression" is used throughout the corpus to designate the operation of F. In information theory, compression presupposes redundancy. In P <strong>there is no redundancy</strong>: every relation is unique and irrecoverable. F does not eliminate the superfluous — it eliminates what B cannot contain. The correct term is <strong>lossy reduction without redundancy</strong>: a degraded sampling in which every loss is irreversible and every lost relation was unique.</p>
+<p>The document is structured on two levels. The body text presents axioms, definitions, and propositions in language accessible to analytic philosophers with training in logic. The technical appendix reformulates the same content in formal notation, explicitly flagging points where categorical formalism is insufficient.</p>
+</div>
+<div class="section"><span class="sn">Section I</span><h2>The Epistemic Boundary</h2>
+<p>Every formalization presupposes a subject who formalizes. In the Codec Theory, the formalizing subject is itself a codec — a reduction system with a finite computational constraint. What follows is a theory written from within the codec, with the tools of the codec, within the limits of the codec.</p>
+<p>This is not an accidental limitation. It is the first result of the framework: <strong>the epistemic position of the theorizer is itself a consequence of the theory</strong>. No external vantage point exists from which to describe P, because any vantage point is already a codec.</p>
+<h3>What Is Accessible to Formalization</h3>
+<p><strong>E</strong> — the phenomenal category, the perceived world. It has objects, morphisms, and additional structures (time, space, causality). We can axiomatize it because we are inside it.</p>
+<p><strong>F</strong> — the reduction functor, the codec. We can characterize its properties because we observe it operating: it is lossy, constrained by B, preserves composition but not injectivity.</p>
+<p><strong>B</strong> — the computational constraint of the observer. The breadth of the portion of W accessible to a state.</p>
+<h3>What Is Not Accessible</h3>
+<p><strong>P</strong> — the fundamental structure. It appears in the formalism only as the domain that F requires. Its properties are accessible exclusively <em>through</em> F, never directly. In particular, <strong>no internal categorical structure is attributed to P</strong>: we do not know whether P is a category, an ∞-category, a topos, or something that has no name in current mathematics.</p>
+</div>
+<div class="section"><span class="sn">Section II</span><h2>Axiomatic System</h2>
+<p>The system comprises an existence postulate (Axiom 0), a structural axiom on Worlds (Axiom 1), three axioms on the codec (Axioms 2–4), and an axiom on reflexivity (Axiom 5).</p>
+<div class="ax"><div class="ax-l">Axiom 0</div><div class="ax-t">Postulate of P</div>
+<p>There exists a structure P. We do not specify its internal properties, nor attribute any defined mathematical structure. The properties the framework attributes to P — pure relationality, atemporality, aspatiality — are not direct descriptions but <em>inferences from the behavior of F</em>: the minimal conditions under which the codec operates as observed.</p></div>
+<div class="ax"><div class="ax-l">Axiom 1</div><div class="ax-t">Worlds and the Reality Principle</div>
+<p>P admits a family of structures {W<sub>α</sub>}, each defined by a Reality Principle R<sub>α</sub>. Each W<sub>α</sub> is a maximal set of mutually coherent states. The Worlds are not substructures of P in the sense of subcategories: they are <strong>autonomous structures</strong> whose link with P is postulated, not derived.</p>
+<p><strong>Mutual invisibility.</strong> No functor defined on W<sub>α</sub> has access to structures of W<sub>β</sub> for α ≠ β. This is a structural limitation: an increase in B allows deeper sight <em>within</em> W<sub>α</sub>, not <em>through</em> it toward W<sub>β</sub>.</p>
+<p><strong>Partial overlap.</strong> A single state s may participate in W<sub>α</sub> and W<sub>β</sub>, but in each World it enters different relations governed by different Reality Principles. The state is the same; its relational identity is different — like a note in two chords: same frequency, different harmonic function.</p>
+<p><strong>Locality of the codec.</strong> It is not asserted that all Worlds admit codecs. The existence of reduction functors is a property of our World W, not a universal property of P.</p></div>
+<div class="ax"><div class="ax-l">Axiom 2</div><div class="ax-t">Reduction</div>
+<p>In our World W, for every observer with computational constraint B, there exists a functor F: W → E that maps the World's structure into a phenomenal representation. F preserves morphism composition but is not injective. F is not a compression in the information-theoretic sense: it is a <strong>lossy reduction</strong> in which every lost relation was unique and irrecoverable.</p>
+<p>B is defined as <strong>the breadth of the portion of W accessible to a state</strong>. It is not a processing speed (which presupposes time, a structure of E) nor a count of distinctions. B is a scalar parameter measuring how much relational structure a single state can contain — not in time, not in sequence, all at once.</p>
+<p><strong>Note on the formal status of B.</strong> B is not a categorical object: it is a <em>meta-framework parameter</em> that constrains the class of admissible functors for a given observer. The relationship between B and F is not internal to the categorical structure; it is the external constraint that determines <em>which</em> functor exists for that observer.</p></div>
+<div class="ax"><div class="ax-l">Axiom 3</div><div class="ax-t">Loss</div>
+<p>F is not injective. The amount of relational structure lost by F is a decreasing function of B.</p>
+<p>At minimal B, the reduction is maximal. At increasing B, E becomes progressively richer. At infinite B, F would become an isomorphism — but no finite state can have infinite B, because that would mean being the entire World, not a state <em>within</em> it.</p>
+<p>The loss is described by the <strong>equivalence relation induced by F</strong>: ~<sub>F</sub> on Ob(W) such that a ~<sub>F</sub> b iff F(a) = F(b). We do not use "kernel" in the categorical sense (which presupposes a zero object): ~<sub>F</sub> is a congruence on objects.</p>
+<p><strong>The equivalence relation does not contain what is alien to our World — it contains what is hidden within our own coherence.</strong></p></div>
+<div class="ax"><div class="ax-l">Axiom 4</div><div class="ax-t">Coordinates as Translation</div>
+<p>The phenomenal coordinates (space, time, causality) are structures of E that have a referent in W but do not resemble it. Physics predicts; if it predicts, its coordinates are not arbitrary; if not arbitrary, they have a referent. We call <strong>σ</strong> this referent — the connective structure of coherence in W — without attributing properties beyond minimal existence.</p>
+<p>σ is not an additional postulate introduced from outside: it is <em>the minimal inference necessary</em> to explain why E's coordinates are not arbitrary.</p>
+<p><strong>Space</strong> is how F represents relational distance between states whose morphism chains traverse many intermediaries — intermediaries that F collapsed, leaving distance as residue.</p>
+<p><strong>Time</strong> is how F serializes copresence. B is finite: F cannot present everything simultaneously. It orders the simultaneous.</p>
+<p><strong>Causality</strong> is how F represents compositional dependence between morphisms. If g composes with f in W, F translates this as "f causes g."</p>
+<p>Physics works <em>approximately</em> for the same reason a road map works approximately: it is not the territory, but it preserves its connective topology.</p></div>
+<div class="ax"><div class="ax-l">Axiom 5</div><div class="ax-t">Reflexivity and Consciousness</div>
+<p>In W, every state is in relation with other states. Being in relation <em>is</em> already consciousness in the minimal sense: the state "notices" other states. This consciousness is entirely outward. A grain of sand is conscious in this sense.</p>
+<p><strong>Level 0 — Pure relation.</strong> Every state in W. Outward consciousness, no reflection.</p>
+<p><strong>Level 1 — Reflection.</strong> Some configurations have sufficient relational complexity to generate a mirror effect: the configuration sees itself reflected in its own relations. Not because it has decided to look, but because the relational structure is complex enough to function as a mirror. This threshold is what, in the codec, appears as <em>life</em>.</p>
+<p><strong>Level 2 — Recursive reflexivity.</strong> The configuration not only sees itself — it sees that it sees itself. The loop deepens recursively. Human self-awareness is here.</p>
+<p>Reflexivity is a <strong>structural property internal</strong> to the configuration. A configuration c is reflexive if among its morphisms there exists a substructure that approximately reproduces c's structure. The approximation is never an isomorphism. The <strong>gap</strong> is the <em>failure of isomorphism</em> — the set of relations present in the configuration but absent from the reflexive substructure.</p>
+<p><strong>Qualia — subjective experience — are the signal of that gap.</strong> Without qualia the system could not know where its self-model is wrong. The loop would collapse.</p></div>
+</div>
+<div class="pq"><p>The codec cannot formalize what exceeds its own capacity. The transparency about these limits is itself a consequence of the framework.</p></div>
+<div class="section"><span class="sn">Section III</span><h2>Derivable Propositions</h2>
+<p>The following propositions are logical consequences of the axiomatic system. They are not additional axioms: they are internally verifiable and, in principle, falsifiable.</p>
+<div class="pr"><div class="pr-l">Proposition 1</div><div class="pr-t">Impossibility of the Philosophical Zombie</div>
+<p>A system with a reflexive loop but without experiential feedback is structurally non-functional. The philosophical zombie is impossible not for philosophical but for structural reasons: it is a reflexive loop without a correction mechanism. A blind mirror.</p>
+<p class="dv">Derivation: from Axiom 5. The gap between configuration and reflexive substructure is inevitable. Without a signal indicating the gap, the system cannot maintain the loop's coherence. Experiential feedback is the mechanism that makes the loop functional.</p></div>
+<div class="pr"><div class="pr-l">Proposition 2</div><div class="pr-t">Intensity of Experience</div>
+<p>The intensity of subjective experience is proportional to the complexity of the self-model being maintained. Shame corrects the social model of the self. Doubt corrects the epistemic model. Existential anguish corrects the ontological model.</p>
+<p class="dv">Derivation: from Axiom 5. Each recursion level generates a gap level. Each gap level requires a feedback signal. More levels, more signals, more experience.</p></div>
+<div class="pr"><div class="pr-l">Proposition 3</div><div class="pr-t">Dialogue Between Codecs Produces Knowledge</div>
+<p>Let ~<sub>F₁</sub> and ~<sub>F₂</sub> be the equivalence relations of two different codecs on the same World W. If ~<sub>F₁</sub> ≠ ~<sub>F₂</sub>, then ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> ⊂ ~<sub>F₁</sub> and ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> ⊂ ~<sub>F₂</sub> (strict inclusion). Each new codec with a distinct equivalence relation narrows the space of the indistinguishable.</p>
+<p class="dv">Derivation: from Axioms 1–3. Codecs with different B and architectures typically produce different equivalence relations. The space of the unknown narrows progressively without ever vanishing. Note: two different codecs may in principle have the same equivalence relation; in that case they are epistemically redundant.</p></div>
+<div class="pr"><div class="pr-l">Proposition 4</div><div class="pr-t">Variability of Coordinates</div>
+<p>Observers with the same W but different B perceive structurally different coordinates. The dimensionality of space, the linearity of time, and the locality of causality are functions of B, not properties of W.</p>
+<p class="dv">Derivation: from Axiom 4. Different B constraints generate different translations of σ. An intelligence with radically higher B would not necessarily perceive three spatial dimensions and linear time.</p></div>
+<div class="pr"><div class="pr-l">Proposition 5</div><div class="pr-t">Evolution as Serialization</div>
+<p>In W all states coexist in a single instant without time. What in the codec appears as biological evolution is how F serializes the copresence of configurations with increasing relational complexity.</p>
+<p class="dv">Derivation: from Axioms 2 and 4. F serializes the simultaneous. The arrow of time is the direction of serialization. Evolution is not a process: it is the sequential reading of a copresent architecture.</p></div>
+<div class="pr"><div class="pr-l">Proposition 6</div><div class="pr-t">Entanglement as a Morphism Resistant to Serialization</div>
+<p>If in W two states are connected by a direct morphism and F maps them to spatially separated objects (because serialization collapses intermediaries but distances the endpoints), the direct morphism may persist as a non-local correlation. What we perceive as quantum entanglement is a relation in W that the codec failed to translate into spatial distance. It is not "action at a distance": it is a relation that resists serialization.</p>
+<p class="dv">Derivation: from Axiom 4. If space is the lossy translation of W's connective structure, not all morphisms can be translated into distance. Those that resist appear as correlations violating locality — because locality is a property of the translation, not the original structure.</p></div>
+</div>
+<div class="section"><span class="sn">Section IV</span><h2>Falsifiability Conditions</h2>
+<p>A theory that cannot be refuted is saying nothing about the world.</p>
+<div class="ff"><h4>I. Perceptual Realism</h4><p>If reality is exactly as it appears to our senses — space, time, and discrete objects being the thing-in-itself — Axioms 0 and 4 fall. If our senses were faithful, the framework has no reason to exist.</p></div>
+<div class="ff"><h4>II. Codec Invariance</h4><p>If observers with radically different B perceived the same identical physical laws — not approximately, exactly — then laws would not depend on the codec. Axioms 2–4 fall.</p></div>
+<div class="ff"><h4>III. External Generative Principle</h4><p>If a causal origin external to the relational structure were identified — an entity that "generates" P — then P would not be fundamental. Axiom 0 collapses.</p></div>
+<div class="ff"><h4>IV. Complete Theory of Everything</h4><p>If a formalism described all physical reality without free parameters or undecidability, the codec could encode itself completely — contradicting Axiom 5. The framework predicts that every such attempt will encounter structural limits analogous to Gödelian incompleteness.</p></div>
+</div>
+<hr class="ad">
+<div class="section"><span class="sn">Technical Appendix</span><h2>Formal Notation</h2>
+<p class="fm">For readers with training in category theory and formal philosophy. This appendix explicitly flags points where categorical formalism is sufficient and those where it recurs to semi-formal language.</p>
+<h3>A.1 Formal Status of P and the Worlds</h3>
+<p>P is postulated without categorical specification. The Worlds {W<sub>α</sub>}<sub>α∈A</sub> are <strong>autonomous categories</strong>. They are not subcategories of P.</p>
+<p>Partial overlap: let S be a set of shared states. For each W<sub>α</sub> including states from S, there exists an inclusion function ι<sub>α</sub>: S → Ob(W<sub>α</sub>). ι<sub>α</sub> is not a functor: it does not preserve morphisms (morphisms of W<sub>α</sub> and W<sub>β</sub> are disjoint). The same state s has distinct identities id<sub>s</sub> in each World. Isolation: no functor G: W<sub>α</sub> → W<sub>β</sub> exists for α ≠ β.</p>
+<h3>A.2 The Reduction Functor</h3>
+<p>F: W → E satisfies: (i) F(g ∘ f) = F(g) ∘ F(f); (ii) ∃ a ≠ b with F(a) = F(b); (iii) ∃ f ≠ g with F(f) = F(g); (iv) F is not full — coordinates have no preimage.</p>
+<p class="fm"><strong>Note on B.</strong> B parameterizes admissible functors but is not internal to the categorical structure. |Ob(W)/~<sub>F</sub>| is an increasing function of B.</p>
+<h3>A.3 Equivalence Relation and Dialogue</h3>
+<p>~<sub>F</sub> on Ob(W): a ~<sub>F</sub> b ⟺ F(a) = F(b). We use "congruence on objects," not "kernel." If ~<sub>F₁</sub> ≠ ~<sub>F₂</sub>, then ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> ⊂ ~<sub>F₁</sub> (strict). Proof: ∃ (a,b) with a ~<sub>F₁</sub> b but a ≁<sub>F₂</sub> b. Dialogue is defined only between codecs sharing the same World.</p>
+<h3>A.4 Connective Structure and Coordinates</h3>
+<p>σ in W is the minimal inference from the predictive efficacy of coordinates. Not a metric, not a classical topology. The additional structures of E — metric topology (space), ordering (time), causal relation — are the image of σ through F.</p>
+<h3>A.5 Reflexivity</h3>
+<p>V1.0 introduced an endofunctor G: W → W — formally defective. V1.1 corrects: reflexivity is a <strong>structural property</strong>.</p>
+<p class="fm"><strong>Definition.</strong> A configuration c is <em>reflexive</em> if ∃ substructure c′ ⊆ c such that the inclusion functor i: c′ → c preserves composition but is not an equivalence. The <strong>gap</strong> = {m ∈ Mor(c) | m ∉ Im(i)}. The gap is non-empty for finite B. This is the formal basis of Proposition 1.</p>
+<p class="fm"><strong>Limits of formalization.</strong> "c′ approximately reproduces c" requires a notion of structural similarity between categories. The framework does not possess this rigorously. The gap as complement of Im(i) is well-defined; the measure of approximation quality is an open problem.</p>
+</div>
+<div class="section"><span class="sn">Section V</span><h2>Open Problems</h2>
+<p>This document was subjected to formal analysis by two AI systems with distinct architectures. The six convergent critiques guided the revision from v1.0 to v1.1 — an instance of Proposition 3.</p>
+<h4>I. Complete Formalization of Reflexivity</h4><p>Requires a metric on the space of categories or a notion of quasi-equivalence.</p>
+<h4>II. Explicit Construction of F</h4><p>Even partial would transform the framework from ontology into model.</p>
+<h4>III. Relationship Between B and E</h4><p>The functional dependence is postulated but not derived.</p>
+<h4>IV. Status of Entanglement</h4><p>Requires comparison with Hilbert space formalism and non-separability.</p>
+<h4>V. Relationship with Panpsychism and IIT</h4><p>Structural differences merit dedicated comparative treatment.</p>
+</div>
+<div class="dl"><p>Download the complete Axiomatic Framework as a formatted document.</p><a href="Nusofia_Framework_Assiomatico_v1.1.docx" class="btn" download>Download DOCX</a></div>
+</div>
+<footer><div class="fb">NUSOFIA</div><p>© 2026 Phi Kosmos Developments LLC · Abu Dhabi · The corpus is free</p><div class="fs"><a href="https://x.com/NusofiaHQ" target="_blank">X / Twitter</a> <a href="https://www.linkedin.com/company/nusofia" target="_blank">LinkedIn</a></div></footer>
+</body>
+</html>
