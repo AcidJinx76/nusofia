@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/feed.xml",
-      "destination": "https://oazbnyqqzezzjxaztdzr.supabase.co/functions/v1/feed"
-    }
-  ]
-}
