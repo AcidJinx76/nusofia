@@ -3,6 +3,22 @@
     {
       "source": "/feed.xml",
       "destination": "https://oazbnyqqzezzjxaztdzr.supabase.co/functions/v1/feed"
+    },
+    {
+      "source": "/codec-theory.html",
+      "destination": "/codec-theory.html"
+    },
+    {
+      "source": "/axiomatic-framework.html",
+      "destination": "/axiomatic-framework.html"
+    },
+    {
+      "source": "/auag.html",
+      "destination": "/auag.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
