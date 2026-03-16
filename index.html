@@ -651,8 +651,12 @@ Share your results with #AskAIAboutNusofia — nusofia.com</div>
   let allPosts = [];
   let allEssays = [];
 
+  // ─── URL MAPPING ───
+  const pageToPath = { home:'/', corpus:'/corpus', protocol:'/protocol', responses:'/responses', objections:'/objections', context:'/context', blog:'/dispatches' };
+  const pathToPage = {}; Object.entries(pageToPath).forEach(([k,v]) => pathToPage[v] = k);
+
   // ─── PAGE NAVIGATION ───
-  function showPage(name) {
+  function showPage(name, pushUrl) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
     const page = document.getElementById('page-' + name);
@@ -668,6 +672,11 @@ Share your results with #AskAIAboutNusofia — nusofia.com</div>
     if (name === 'responses') loadResponses();
     if (name === 'blog') loadPosts();
     setTimeout(initReveal, 50);
+    // Push URL (unless we're restoring from popstate or initial load)
+    if (pushUrl !== false) {
+      const path = pageToPath[name] || '/';
+      history.pushState({ page: name }, '', path);
+    }
   }
 
   // ─── SCROLL NAV ───
@@ -738,7 +747,7 @@ Share your results with #AskAIAboutNusofia — nusofia.com</div>
   }
 
   // ─── ESSAY READER ───
-  function openEssay(id, lang) {
+  function openEssay(id, lang, pushUrl) {
     const essay = allEssays.find(e => e.id === id);
     if (!essay || !essay.body) return;
     currentEssayId = id;
@@ -760,6 +769,10 @@ Share your results with #AskAIAboutNusofia — nusofia.com</div>
     const bodyText = currentEssayLang === 'it' && hasIt ? essay.body_it : essay.body;
     renderEssayBody(bodyText);
     window.scrollTo({ top: 0, behavior: 'instant' });
+    // Push URL
+    if (pushUrl !== false && essay.slug) {
+      history.pushState({ page: 'corpus', essay: essay.slug }, '', '/essay/' + essay.slug);
+    }
   }
 
   function switchEssayLang(lang) {
@@ -787,6 +800,7 @@ Share your results with #AskAIAboutNusofia — nusofia.com</div>
     const dl = document.getElementById('corpus-dl');
     if (lv) lv.style.display = 'block';
     if (dl) dl.style.display = 'block';
+    history.pushState({ page: 'corpus' }, '', '/corpus');
   }
 
   // ─── LOAD AI RESPONSES (DYNAMIC) ───
@@ -852,7 +866,7 @@ Share your results with #AskAIAboutNusofia — nusofia.com</div>
   }
 
   // ─── ARTICLE VIEW ───
-  function openArticle(id) {
+  function openArticle(id, pushUrl) {
     const post = allPosts.find(p => p.id === id);
     if (!post) return;
     document.getElementById('blog-list-view').style.display = 'none';
@@ -865,12 +879,17 @@ Share your results with #AskAIAboutNusofia — nusofia.com</div>
     const html = post.body.split(/\n\n+/).map(p => '<p>' + esc(p).replace(/\n/g, '<br>') + '</p>').join('');
     document.getElementById('article-body').innerHTML = html;
     window.scrollTo({ top: 0, behavior: 'instant' });
+    // Push URL
+    if (pushUrl !== false && post.slug) {
+      history.pushState({ page: 'blog', dispatch: post.slug }, '', '/dispatch/' + post.slug);
+    }
   }
 
   function closeArticle() {
     document.getElementById('article-view').style.display = 'none';
     const lv = document.getElementById('blog-list-view');
     if (lv) lv.style.display = 'block';
+    history.pushState({ page: 'blog' }, '', '/dispatches');
   }
 
   // ─── HELPERS ───
@@ -885,6 +904,99 @@ Share your results with #AskAIAboutNusofia — nusofia.com</div>
     const dt = new Date(d);
     return dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   }
+
+  // ─── POPSTATE (back/forward browser buttons) ───
+  window.addEventListener('popstate', (e) => {
+    if (e.state) {
+      if (e.state.dispatch) {
+        showPage('blog', false);
+        loadPosts().then(() => {
+          const post = allPosts.find(p => p.slug === e.state.dispatch);
+          if (post) openArticle(post.id, false);
+        });
+      } else if (e.state.essay) {
+        showPage('corpus', false);
+        loadEssays().then(() => {
+          const essay = allEssays.find(es => es.slug === e.state.essay);
+          if (essay) openEssay(essay.id, 'en', false);
+        });
+      } else if (e.state.page) {
+        showPage(e.state.page, false);
+      }
+    } else {
+      routeFromPath();
+    }
+  });
+
+  // ─── INITIAL ROUTE FROM URL ───
+  async function routeFromPath() {
+    const path = window.location.pathname;
+    // /dispatch/{slug}
+    const dispatchMatch = path.match(/^\/dispatch\/(.+)$/);
+    if (dispatchMatch) {
+      const slug = dispatchMatch[1];
+      showPage('blog', false);
+      try {
+        const { data, error } = await sb.from('posts').select('*').eq('published', true).order('published_at', { ascending: false });
+        if (!error && data) {
+          allPosts = data;
+          cachedPosts = data;
+          const container = document.getElementById('blog-container');
+          container.innerHTML = data.map(p => `
+            <div class="blog-card reveal">
+              <span class="blog-date">${fmtDate(p.published_at)}</span>
+              <h3 class="blog-title" onclick="openArticle('${p.id}')">${esc(p.title)}</h3>
+              ${p.excerpt ? '<p class="blog-excerpt">' + esc(p.excerpt) + '</p>' : ''}
+              <span class="blog-tag">${esc(p.category)}</span>
+            </div>
+          `).join('');
+          const post = data.find(p => p.slug === slug);
+          if (post) { openArticle(post.id, false); return; }
+        }
+      } catch(e) { console.error(e); }
+      return;
+    }
+    // /essay/{slug}
+    const essayMatch = path.match(/^\/essay\/(.+)$/);
+    if (essayMatch) {
+      const slug = essayMatch[1];
+      showPage('corpus', false);
+      try {
+        const { data, error } = await sb.from('essays').select('*').eq('published', true).order('sort_order', { ascending: true });
+        if (!error && data) {
+          allEssays = data;
+          cachedEssays = data;
+          const typeLabels = { essay: 'Essay', narrative: 'Narrative', report: 'Confidential Report' };
+          const container = document.getElementById('corpus-container');
+          container.innerHTML = data.map(e => {
+            const hasBody = e.body && e.body.length > 50;
+            const titleHtml = hasBody
+              ? '<h3 style="cursor:pointer;transition:color .25s;" onclick="openEssay(\'' + e.id + '\')" onmouseover="this.style.color=\'var(--gold)\'" onmouseout="this.style.color=\'var(--cream)\'">' + esc(e.title) + ' <span style="font-size:12px;color:var(--gold-dim);">→ read</span></h3>'
+              : '<h3>' + esc(e.title) + '</h3>';
+            return '<div class="corpus-item reveal"><div class="corpus-num">' + esc(e.number) + '</div><div class="corpus-content"><span class="corpus-type">' + esc(typeLabels[e.essay_type] || e.essay_type) + '</span>' + titleHtml + '<p>' + esc(e.description) + '</p></div></div>';
+          }).join('');
+          const essay = data.find(e => e.slug === slug);
+          if (essay && essay.body) { openEssay(essay.id, 'en', false); return; }
+        }
+      } catch(e) { console.error(e); }
+      return;
+    }
+    // Static pages
+    const pageName = pathToPage[path];
+    if (pageName) {
+      showPage(pageName, false);
+      return;
+    }
+    // Default: home
+    showPage('home', false);
+  }
+
+  // Run initial routing
+  if (window.location.pathname !== '/') {
+    routeFromPath();
+  }
+  // Replace initial state so back button works from first navigation
+  history.replaceState({ page: pathToPage[window.location.pathname] || 'home' }, '', window.location.pathname);
 </script>
 </body>
 </html>
