@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Last Barrel — Signal · Nusofia</title>
+  <meta name="description" content="The Iran war is not about Iran. It is about who sells the last profitable barrel of oil before nuclear and renewables strand Gulf reserves. A structural analysis by Michele Zampighi.">
+  <meta property="og:title" content="The Last Barrel: Who the Iran War Is Really Against">
+  <meta property="og:description" content="A structural reading of American energy strategy in the Gulf — and what it means for the states that thought they were spectators.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://nusofia.com/the-last-barrel.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0D0D1A;
+      --bg2: #12121F;
+      --dark: #1A1A2E;
+      --gold: #C9A84C;
+      --gold-dim: #A08A3E;
+      --gold-glow: rgba(201,168,76,0.08);
+      --cream: #F7F5F0;
+      --cream-dim: #D4D0C8;
+      --body-text: #C8C4BC;
+      --muted: #7A7670;
+      --border: rgba(201,168,76,0.12);
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --display: 'Cinzel', Georgia, serif;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--body-text);
+      font-family: var(--serif);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--gold); color: var(--black); }
+
+    .nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      padding:1.2rem 2rem;
+      display:flex; justify-content:space-between; align-items:center;
+      background:rgba(13,13,26,0.85);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo {
+      font-family:var(--sans); font-size:0.75rem; font-weight:700;
+      letter-spacing:0.25em; color:var(--gold); text-decoration:none; text-transform:uppercase;
+    }
+    .nav-links { display:flex; gap:1.5rem; flex-wrap:wrap; }
+    .nav-link {
+      font-family:var(--sans); font-size:0.72rem; color:var(--muted);
+      text-decoration:none; letter-spacing:0.08em; transition:color 0.3s;
+    }
+    .nav-link:hover, .nav-link.active { color:var(--gold); }
+
+    .hero {
+      min-height:65vh;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; padding:8rem 2rem 4rem;
+    }
+    .hero-label {
+      font-family:var(--sans); font-size:0.65rem; letter-spacing:0.3em;
+      text-transform:uppercase; color:var(--gold-dim); margin-bottom:2rem; display:block;
+    }
+    .hero h1 {
+      font-family:var(--display); font-size:clamp(26px,4.5vw,48px);
+      font-weight:600; color:var(--cream); line-height:1.2; margin-bottom:1rem;
+    }
+    .hero .subtitle {
+      font-family:var(--serif); font-size:clamp(16px,2vw,20px);
+      font-style:italic; color:var(--gold-dim); max-width:600px; line-height:1.6;
+    }
+    .hero .meta {
+      font-family:var(--sans); font-size:0.7rem; color:var(--muted);
+      letter-spacing:0.1em; margin-top:2rem;
+      display:flex; gap:2rem; justify-content:center; flex-wrap:wrap;
+    }
+
+    .content {
+      max-width:760px; margin:0 auto; padding:0 2rem 8rem;
+    }
+
+    .preamble {
+      font-family:var(--serif); font-size:17px; color:var(--cream-dim);
+      line-height:1.8; margin-bottom:3.5rem; padding:1.8rem 2rem;
+      border-left:2px solid var(--gold-dim); background:var(--bg2);
+      font-style:italic;
+    }
+
+    .section {
+      margin-bottom:3.5rem; padding-bottom:3.5rem;
+      border-bottom:1px solid rgba(201,168,76,0.08);
+    }
+    .section:last-of-type { border-bottom:none; }
+
+    .section-num {
+      font-family:var(--display); font-size:11px; letter-spacing:0.3em;
+      color:var(--gold); display:block; margin-bottom:0.5rem;
+    }
+    .section h2 {
+      font-family:var(--display); font-size:clamp(17px,2.2vw,22px);
+      font-weight:600; color:var(--cream); margin-bottom:1.4rem; line-height:1.35;
+    }
+    .section p {
+      font-family:var(--serif); font-size:16.5px; color:var(--cream-dim);
+      margin-bottom:1.1rem; line-height:1.8;
+    }
+
+    .pull {
+      font-family:var(--display); font-size:clamp(18px,2.5vw,24px);
+      font-weight:500; color:var(--cream); line-height:1.4;
+      padding:2rem 0; border-top:1px solid rgba(201,168,76,0.2);
+      border-bottom:1px solid rgba(201,168,76,0.2);
+      margin:2.5rem 0; text-align:center;
+    }
+
+    blockquote {
+      font-family:var(--serif); font-style:italic; font-size:16px;
+      color:var(--gold-dim); padding:1.4rem 1.8rem;
+      border-left:2px solid rgba(201,168,76,0.3);
+      margin:2rem 0; background:rgba(201,168,76,0.03);
+      line-height:1.75;
+    }
+    blockquote cite {
+      display:block; margin-top:0.8rem; font-size:0.72rem;
+      font-style:normal; letter-spacing:0.08em; text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .stat-row {
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr));
+      gap:1px; background:rgba(201,168,76,0.08); margin:2.5rem 0;
+      border:1px solid rgba(201,168,76,0.08);
+    }
+    .stat { background:var(--black); padding:1.4rem 1.6rem; }
+    .stat-num {
+      font-family:var(--display); font-size:1.8rem; font-weight:600;
+      color:var(--gold); line-height:1; margin-bottom:0.4rem;
+    }
+    .stat-label {
+      font-family:var(--sans); font-size:0.68rem; letter-spacing:0.06em;
+      text-transform:uppercase; color:var(--muted); line-height:1.5;
+    }
+
+    .footnote-section {
+      margin-top:4rem; padding-top:2.5rem;
+      border-top:1px solid rgba(201,168,76,0.12);
+    }
+    .footnote-title {
+      font-family:var(--sans); font-size:0.65rem; letter-spacing:0.2em;
+      text-transform:uppercase; color:var(--gold-dim); margin-bottom:1.5rem;
+    }
+    .footnotes { list-style:none; counter-reset:fn; }
+    .footnotes li {
+      counter-increment:fn; font-size:13.5px; color:var(--muted);
+      margin-bottom:0.7rem; padding-left:2rem; position:relative; line-height:1.6;
+    }
+    .footnotes li::before {
+      content:counter(fn);
+      position:absolute; left:0; top:0; font-size:0.68rem;
+      color:var(--gold-dim); font-weight:600; font-family:var(--display);
+    }
+
+    .back-link {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      font-family:var(--sans); font-size:0.7rem; letter-spacing:0.08em;
+      text-transform:uppercase; color:var(--gold-dim); text-decoration:none;
+      margin-bottom:4rem; transition:color 0.3s;
+    }
+    .back-link:hover { color:var(--gold); }
+
+    sup {
+      font-size:0.6rem; color:var(--gold-dim); vertical-align:super; margin-left:1px;
+    }
+
+    footer {
+      text-align:center; padding:3rem 2rem;
+      border-top:1px solid var(--border);
+    }
+    .footer-brand {
+      font-family:var(--display); font-size:0.85rem;
+      letter-spacing:0.25em; color:var(--gold-dim);
+    }
+    footer p { font-size:0.85rem; color:var(--muted); margin-top:0.8rem; }
+    .footer-social { margin-top:1rem; display:flex; justify-content:center; gap:1.5rem; }
+    .footer-social a { font-size:0.85rem; color:var(--gold-dim); text-decoration:none; transition:color 0.3s; }
+    .footer-social a:hover { color:var(--gold); }
+
+    .reveal { opacity:0; transform:translateY(20px); transition:all 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media (max-width:768px) {
+      .nav { padding:1rem 1.2rem; flex-wrap:wrap; gap:0.5rem; }
+      .nav-links { gap:0.8rem; }
+      .hero { padding:7rem 1.5rem 3rem; }
+      .content { padding:0 1.5rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Nusofia</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="codec-theory.html" class="nav-link">Codec Theory</a>
+    <a href="signal.html" class="nav-link">Signal</a>
+    <a href="https://x.com/NusofiaHQ" target="_blank" class="nav-link">X</a>
+    <a href="https://www.linkedin.com/company/nusofia" target="_blank" class="nav-link">LinkedIn</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="hero-label">Signal · Geopolitics · April 2, 2026</span>
+  <h1>The Last Barrel:<br>Who the Iran War Is Really Against</h1>
+  <p class="subtitle">A structural reading of American incentives in the Gulf — and what it means for the states that thought they were spectators.</p>
+  <div class="meta">
+    <span>Michele Zampighi</span>
+    <span>Phi Kosmos Developments · Dubai</span>
+    <span>7 min read</span>
+  </div>
+</div>
+
+<div class="content">
+
+  <a href="signal.html" class="back-link reveal">← Back to Signal</a>
+
+  <div class="preamble reveal">
+    The war that began on February 28, 2026 with American and Israeli airstrikes on Iran has been framed, almost universally, as a conflict about nuclear proliferation, regional hegemony, and the survival of the Islamic Republic. That framing is not wrong. But it is incomplete — and the part it omits is the part that matters most for the countries of the Arabian Gulf, who are absorbing Iranian missiles while watching their economic futures be quietly restructured by the very ally whose bases sit on their soil.
+  </div>
+
+  <div class="section reveal">
+    <span class="section-num">I</span>
+    <h2>The Race That Nobody Names</h2>
+    <p>Begin with a number that does not appear in any war communiqué but governs everything beneath the surface: $13 to $17 trillion. That is the estimated value of fossil fuel reserves that must remain in the ground — permanently unmonetized — if the world is to meet the Paris Agreement temperature targets.<sup>1</sup> A 2022 study in <em>Nature</em> put it more precisely: approximately 60 percent of global oil and gas reserves and 90 percent of known coal deposits cannot be burned.<sup>2</sup></p>
+    <p>Every major energy producer on earth understands what this means. It means that the race is not, as it was in the twentieth century, a race to find more oil. It is a race to sell the oil you already have — before the combination of nuclear power, renewable energy, and battery storage makes it structurally worthless. The technical term is "stranded assets." The political reality is something closer to a slow-motion liquidation sale, conducted under the noise of market cycles and diplomatic communiqués.</p>
+    <p>In this race, not all producers are equal. The Arabian Gulf sits on roughly a third of the world's proven oil reserves, extractable at costs between three and ten dollars per barrel. The United States — now the world's largest oil and gas producer at 24.2 million barrels per day, surpassing Saudi Arabia and Russia combined<sup>3</sup> — extracts its shale oil at costs between forty and fifty dollars per barrel. In a world of abundant supply and declining demand, the Gulf wins on cost structure every time. Which is precisely why America needs the Gulf to lose something else: reliability.</p>
+  </div>
+
+  <div class="section reveal">
+    <span class="section-num">II</span>
+    <h2>What Hormuz Does to the Competition</h2>
+    <p>The closure of the Strait of Hormuz — effective since March 4, 2026, when Iranian Revolutionary Guard forces declared the waterway closed to vessels from hostile nations — has been described by the International Energy Agency as "the greatest global energy security challenge in history." That description is accurate as far as it goes. What it does not capture is the structural consequence that persists long after the shooting stops.</p>
+    <p>A geopolitical risk premium, once established, does not dissolve with a ceasefire. War premiums become structurally embedded in the cost of transiting contested routes. The same logic applies to Hormuz, amplified by an order of magnitude: through this strait normally pass 20 million barrels of crude oil per day — approximately 20 percent of global seaborne supply — along with 20 percent of global LNG trade, 30 percent of internationally traded fertilizers, significant volumes of helium, and the majority of Gulf states' food imports.<sup>4</sup></p>
+
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">20%</div>
+        <div class="stat-label">of global oil supply through Hormuz daily</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">20%</div>
+        <div class="stat-label">of global LNG trade disrupted</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$17T</div>
+        <div class="stat-label">in fossil fuel assets facing stranding</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3–5 yrs</div>
+        <div class="stat-label">to repair Ras Laffan LNG damage</div>
+      </div>
+    </div>
+
+    <p>Every buyer who has lived through this crisis — European utilities, Japanese trading houses, Korean industrial conglomerates, Taiwanese power companies — is now conducting the same internal analysis: what is the cost of a future closure, and how do we eliminate that risk from our supply chain? The answer is not to gamble that Hormuz stays open forever. The answer is to diversify toward suppliers whose delivery routes are structurally immune to Gulf disruption. That means American LNG, Norwegian gas, Australian liquefied natural gas — all of which travel through open ocean routes controlled by no hostile state.</p>
+    <p>This is not a side effect of the Iran war. It is the mechanism through which the war reshapes global energy markets in America's favour, independent of its declared objectives.</p>
+  </div>
+
+  <div class="section reveal">
+    <span class="section-num">III</span>
+    <h2>The Doctrine Made Explicit</h2>
+    <p>One mark of a genuine strategic shift is when the doctrine stops being implicit and becomes declared policy. That moment arrived on March 31, 2026, when President Trump told European and Asian partners they faced a binary choice: "Fight for Fuel" — deploy their own naval forces to secure Persian Gulf shipping — or "Buy from USA." The National Energy Dominance Council, a newly formed executive body, followed hours later with a policy briefing formalizing what it called "Energy Leverage": prioritizing domestic needs and "aligned" partners for US energy exports, while leaving dissenting allies to compete on the spot market.<sup>5</sup></p>
+    <p>The consequence was immediate and will be durable: twenty-year LNG supply contracts, being signed across Europe and Asia under the acute pressure of shortage and fear, will lock in American energy market dominance for two decades. Cheniere Energy, the largest US LNG exporter, confirmed it was already at peak production — meaning the volume of exports cannot increase, but the price extracted per shipment is surging to record levels.<sup>6</sup></p>
+
+    <blockquote>
+      "European allies, particularly the UK and France, may be forced into a strategic surrender on energy policy, signing 20-year LNG contracts with US firms to ensure national security. This would effectively lock in American energy dominance for the next two decades."
+      <cite>Financial Content Markets Analysis, April 1, 2026</cite>
+    </blockquote>
+  </div>
+
+  <div class="section reveal">
+    <span class="section-num">IV</span>
+    <h2>Qatar's Reputation: The Casualty Nobody Mentions</h2>
+    <p>The attack on Ras Laffan Industrial City on March 18–19, 2026, deserves particular attention because its consequences extend far beyond the physical damage. Two of Qatar's fourteen LNG processing trains were destroyed, removing 12.8 million tonnes per year of LNG export capacity. QatarEnergy's CEO estimated annual revenue losses at $20 billion and confirmed that repairs would take three to five years.<sup>7</sup></p>
+    <p>QatarEnergy subsequently declared force majeure on long-term LNG contracts with Italy, Belgium, South Korea, and China. Qatar had built its position in global energy markets over four decades on a singular competitive advantage: not the lowest price, but the highest reliability. It insisted on long-term contracts with oil-linked pricing and destination restrictions — terms that other LNG suppliers could not successfully demand — precisely because its reputation for dependable delivery was beyond question. That reputation no longer exists.</p>
+
+    <div class="pull">
+      "The effects will probably eclipse in depth and scope the impact of Russia's 2022 invasion of Ukraine."
+    </div>
+
+    <p>The Iran war did not merely interrupt Qatar's LNG deliveries. It destroyed the premium on which Qatar's entire commercial model rested. As one industry analyst wrote, "the lasting damage may be to the Gulf states' soft power — their brand as stable, predictable havens for investment and tourism in a turbulent region."<sup>8</sup></p>
+  </div>
+
+  <div class="section reveal">
+    <span class="section-num">V</span>
+    <h2>A War the Gulf Did Not Choose</h2>
+    <p>It is important to state clearly what the evidence shows: the Gulf Cooperation Council states did not want this war. In the weeks before the February 28 strikes, Oman was mediating indirect talks between Washington and Tehran, with its foreign minister declaring that peace was "within reach." Saudi Arabia and the UAE had spent the previous three years carefully rebuilding their relationship with Iran after decades of proxy conflict, culminating in a China-brokered normalization agreement in 2023.</p>
+    <p>Iran's response to the US-Israeli strikes shattered that détente in its first forty-eight hours, targeting not just American military installations but the civilian and energy infrastructure of every GCC member state. The UAE absorbed over 150 missiles and drones — the heaviest Iranian assault on any single country. Dubai's airport was struck. Saudi Arabia's oil infrastructure was targeted. Qatar, Kuwait, and Bahrain were all hit.</p>
+    <p>The result has been a paradox of extraordinary geopolitical complexity. The Gulf states need the United States to neutralize Iran's military capability — that objective genuinely serves Gulf interests. But the means by which America is pursuing that objective — a sustained air campaign that has made Gulf cities and energy infrastructure legitimate targets of Iranian retaliation — is actively damaging the very assets the Gulf states need to survive the post-oil transition.</p>
+  </div>
+
+  <div class="section reveal">
+    <span class="section-num">VI</span>
+    <h2>The Seat They Are Not Being Offered</h2>
+    <p>On March 26, 2026, GCC Secretary-General Jasem Al-Budaiwi told diplomatic missions in Riyadh: "It is important that the countries of the GCC participate in shaping the future regional field, and it is necessary that they be involved in all talks to solve the crisis."<sup>9</sup> The editorial board of the Saudi daily Al-Riyadh, the same day: "talks about positive intentions or general commitments are insufficient — there is a clear need for stricter arrangements."</p>
+    <p>You do not demand a seat at a table you control. The GCC's insistence on inclusion in US-Iran negotiations is the clearest possible signal that Gulf leaders understand their interests may not align with the deal Washington is preparing to offer Tehran. Their specific fear — well-founded in historical precedent — is that America will negotiate a bilateral settlement focused exclusively on nuclear non-proliferation and the reopening of Hormuz, leaving the Gulf to manage the consequences: a militarily degraded but politically intact and deeply hostile Iran, without binding security guarantees, without a regional architecture, and without compensation for the economic destruction incurred.</p>
+    <p>Iraq in 2003. Libya in 2011. The pattern is not obscure.</p>
+  </div>
+
+  <div class="section reveal">
+    <span class="section-num">VII</span>
+    <h2>The Quiet Infrastructure of Exit</h2>
+    <p>What is most revealing about Gulf strategic thinking is not what is being said publicly but what is being built quietly. Project mBridge — a multilateral central bank digital currency platform connecting the UAE, Saudi Arabia, China, and Thailand — has become the primary corridor for energy settlement between Riyadh and Beijing, processing transactions without SWIFT systems or dollar conversion.<sup>10</sup> Saudi Arabia joined mBridge as a full participant in June 2024. The platform is now operationally active.</p>
+    <p>The petrodollar system — the arrangement by which Gulf energy exports are priced and settled in US dollars, recycled through US Treasury purchases and underpinned by American security guarantees — is the deepest structural bond between Washington and Riyadh. It has held for half a century. Its erosion does not require a dramatic announcement. It requires exactly what is happening: incremental bilateral energy settlements in alternative currencies, accumulating until the aggregate effect becomes visible in Treasury demand and dollar exchange rates. The infrastructure for that transition is, for the first time, operationally ready.</p>
+    <p>Gulf states are building their exit infrastructure while hosting American military bases. That is not confusion or contradiction. It is the hedge of rational actors who have concluded that the US security guarantee cannot be relied upon unconditionally.</p>
+  </div>
+
+  <div class="section reveal">
+    <span class="section-num">VIII</span>
+    <h2>What Should Be Made Explicit</h2>
+    <p>The analysis above rests entirely on structural logic and documented evidence. It does not require attributing malicious intent to Washington. American policymakers are pursuing what they understand to be American interests: eliminating a nuclear threat, demonstrating military resolve, securing energy market advantage, and locking in twenty-year LNG contracts at a moment of acute global shortage. These are coherent objectives, vigorously pursued.</p>
+    <p>What is not being said clearly enough — in Riyadh, in Abu Dhabi, in Doha — is that these objectives are being pursued at Gulf expense. The destruction of Gulf oil's reliability premium, the permanent embedding of a Hormuz risk surcharge, the forced reallocation of long-term energy contracts toward American suppliers: these are structural transfers of economic value from the Gulf to the United States, executed under the cover of a war that Gulf states neither initiated nor wanted.</p>
+    <p>The question is not whether to trust Washington. The question is whether the destruction of Iran's military capability is worth the simultaneous permanent damage to the energy brand that Gulf diversification strategies depend upon, the acceleration of energy transition away from Gulf reserves, and two decades of American LNG locking Gulf customers into alternative supply chains.</p>
+    <p>History suggests the window to answer that question closes faster than expected. And the answer, once the shooting stops and the contracts are signed, will be very difficult to revise.</p>
+  </div>
+
+  <div class="footnote-section reveal">
+    <div class="footnote-title">Sources &amp; References</div>
+    <ol class="footnotes">
+      <li>Semieniuk et al., "Stranded fossil-fuel assets translate to major losses for investors in advanced economies," <em>Nature Climate Change</em>, May 2022. Global stranded asset estimates: $1.4 trillion upstream; systemic value loss $13–17 trillion across full reserve base per ScienceDirect meta-analysis (2022).</li>
+      <li>Welsby et al., "Unextractable fossil fuels in a 1.5°C world," <em>Nature</em>, September 2021. The 60% oil and gas / 90% coal figures, updated by IEA World Energy Outlook 2023.</li>
+      <li>US Department of Energy, "State of American Energy," March 2026. US production reaching record levels per DOE data.</li>
+      <li>Wikipedia, "2026 Strait of Hormuz Crisis," updated April 2026. Data sourced from IEA, US EIA, UN Comtrade, and Lloyd's shipping intelligence.</li>
+      <li>Financial Content Markets, "Fight for Fuel or Buy From USA: Trump Ultimatum Reshapes Global Energy Order," April 1, 2026.</li>
+      <li>CNBC, "How the big oil and gas CEOs think the Iran war supply disruption will play out," March 28, 2026.</li>
+      <li>QatarEnergy official statement, March 19, 2026. Confirmed by Reuters interview with CEO Saad al-Kaabi.</li>
+      <li>Al Jazeera, "After Iran's salvo hit their skylines, will Gulf states enter the war?", March 2026.</li>
+      <li>MEMRI, "Gulf States — Headed by Saudi Arabia and the UAE — Demand to Be Involved in Any Negotiations with Iran," March 26–27, 2026.</li>
+      <li>The Online Citizen, "Trump's Gulf Gamble May Be the Petrodollar's Last Hand," March 25, 2026. mBridge operational status confirmed by Bank for International Settlements quarterly review, Q3 2024.</li>
+    </ol>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">NUSOFIA</div>
+  <p>© 2026 Phi Kosmos Developments LLC · Abu Dhabi · The corpus is free</p>
+  <div class="footer-social">
+    <a href="https://x.com/NusofiaHQ" target="_blank">X / Twitter</a>
+    <a href="https://www.linkedin.com/company/nusofia" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

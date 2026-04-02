@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signal — Nusofia</title>
+  <meta name="description" content="Signal: geopolitical and economic dispatches from Michele Zampighi. Structural readings of the world through the Nusofian lens.">
+  <meta property="og:title" content="Signal — Nusofia">
+  <meta property="og:description" content="Geopolitical and economic analysis. Not commentary. Structural readings of what the world is already producing.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nusofia.com/signal.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0D0D1A;
+      --bg2: #12121F;
+      --dark: #1A1A2E;
+      --gold: #C9A84C;
+      --gold-dim: #A08A3E;
+      --gold-glow: rgba(201,168,76,0.08);
+      --cream: #F7F5F0;
+      --cream-dim: #D4D0C8;
+      --body-text: #C8C4BC;
+      --muted: #7A7670;
+      --border: rgba(201,168,76,0.12);
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --display: 'Cinzel', Georgia, serif;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--body-text);
+      font-family: var(--serif);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--gold); color: var(--black); }
+
+    .nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      padding:1.2rem 2rem;
+      display:flex; justify-content:space-between; align-items:center;
+      background:rgba(13,13,26,0.85);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo {
+      font-family:var(--sans); font-size:0.75rem; font-weight:700;
+      letter-spacing:0.25em; color:var(--gold); text-decoration:none; text-transform:uppercase;
+    }
+    .nav-links { display:flex; gap:1.5rem; flex-wrap:wrap; }
+    .nav-link {
+      font-family:var(--sans); font-size:0.72rem; color:var(--muted);
+      text-decoration:none; letter-spacing:0.08em; transition:color 0.3s;
+    }
+    .nav-link:hover, .nav-link.active { color:var(--gold); }
+
+    .hero {
+      min-height:60vh;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; padding:8rem 2rem 4rem;
+    }
+    .hero-label {
+      font-family:var(--sans); font-size:0.65rem; letter-spacing:0.3em;
+      text-transform:uppercase; color:var(--gold-dim); margin-bottom:2rem; display:block;
+    }
+    .hero h1 {
+      font-family:var(--display); font-size:clamp(32px,5vw,56px);
+      font-weight:600; color:var(--cream); line-height:1.2; margin-bottom:1rem;
+    }
+    .hero .subtitle {
+      font-family:var(--serif); font-size:clamp(16px,2vw,20px);
+      font-style:italic; color:var(--gold-dim); max-width:560px; line-height:1.6;
+    }
+    .hero .rule {
+      width:48px; height:1px; background:var(--gold-dim); margin:2.5rem auto 0;
+      opacity:0.4;
+    }
+
+    .content {
+      max-width:800px; margin:0 auto; padding:4rem 2rem 8rem;
+    }
+
+    .section-intro {
+      font-family:var(--serif); font-size:16.5px; color:var(--cream-dim);
+      line-height:1.75; margin-bottom:4rem; padding:1.5rem 1.8rem;
+      border-left:2px solid var(--gold-dim); background:var(--bg2);
+    }
+
+    .articles-grid {
+      display:flex; flex-direction:column; gap:0;
+    }
+
+    .article-card {
+      display:block; text-decoration:none;
+      padding:2.5rem 0;
+      border-bottom:1px solid rgba(201,168,76,0.08);
+      transition:background 0.3s;
+    }
+    .article-card:first-child { border-top:1px solid rgba(201,168,76,0.08); }
+    .article-card:hover { background:rgba(201,168,76,0.03); padding-left:1rem; padding-right:1rem; margin:0 -1rem; }
+
+    .card-meta {
+      font-family:var(--sans); font-size:0.65rem; letter-spacing:0.2em;
+      text-transform:uppercase; color:var(--gold-dim); margin-bottom:0.8rem;
+      display:flex; gap:1.5rem; align-items:center;
+    }
+    .card-tag {
+      color:var(--muted);
+    }
+
+    .card-title {
+      font-family:var(--display); font-size:clamp(18px,2.5vw,26px);
+      font-weight:500; color:var(--cream); line-height:1.3; margin-bottom:0.8rem;
+    }
+
+    .card-subtitle {
+      font-family:var(--serif); font-style:italic; font-size:16px;
+      color:var(--gold-dim); line-height:1.5; margin-bottom:1rem;
+    }
+
+    .card-excerpt {
+      font-family:var(--serif); font-size:15.5px; color:var(--body-text);
+      line-height:1.7; max-width:660px;
+    }
+
+    .card-arrow {
+      font-family:var(--sans); font-size:0.7rem; letter-spacing:0.1em;
+      text-transform:uppercase; color:var(--gold-dim); margin-top:1.2rem;
+      display:inline-block; transition:color 0.3s;
+    }
+    .article-card:hover .card-arrow { color:var(--gold); }
+
+    .empty-state {
+      font-family:var(--serif); font-style:italic; font-size:16px;
+      color:var(--muted); padding:4rem 0; text-align:center;
+    }
+
+    footer {
+      text-align:center; padding:3rem 2rem;
+      border-top:1px solid var(--border);
+    }
+    .footer-brand {
+      font-family:var(--display); font-size:0.85rem;
+      letter-spacing:0.25em; color:var(--gold-dim);
+    }
+    footer p { font-size:0.85rem; color:var(--muted); margin-top:0.8rem; }
+    .footer-social { margin-top:1rem; display:flex; justify-content:center; gap:1.5rem; }
+    .footer-social a { font-size:0.85rem; color:var(--gold-dim); text-decoration:none; transition:color 0.3s; }
+    .footer-social a:hover { color:var(--gold); }
+
+    .reveal { opacity:0; transform:translateY(20px); transition:all 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media (max-width:768px) {
+      .nav { padding:1rem 1.2rem; flex-wrap:wrap; gap:0.5rem; }
+      .nav-links { gap:0.8rem; }
+      .hero { padding:7rem 1.5rem 3rem; }
+      .content { padding:3rem 1.5rem 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Nusofia</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="codec-theory.html" class="nav-link">Codec Theory</a>
+    <a href="signal.html" class="nav-link active">Signal</a>
+    <a href="https://x.com/NusofiaHQ" target="_blank" class="nav-link">X</a>
+    <a href="https://www.linkedin.com/company/nusofia" target="_blank" class="nav-link">LinkedIn</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="hero-label">From the World · Signal</span>
+  <h1>Signal</h1>
+  <p class="subtitle">The world is not noise. It is a signal that most instruments are not calibrated to receive.</p>
+  <div class="rule"></div>
+</div>
+
+<div class="content">
+
+  <div class="section-intro reveal">
+    Signal is not the Nusofia corpus. It is the world the corpus was written to read. These dispatches are structural analyses — geopolitical, economic, energetic — written from the position of someone who operates between Milan, Dubai, and the question of what comes next. They are not opinion. They are readings.
+  </div>
+
+  <div class="articles-grid">
+
+    <a href="the-last-barrel.html" class="article-card reveal">
+      <div class="card-meta">
+        <span>April 2, 2026</span>
+        <span class="card-tag">Geopolitics · Energy · Gulf</span>
+      </div>
+      <div class="card-title">The Last Barrel: Who the Iran War Is Really Against</div>
+      <div class="card-subtitle">A structural reading of American incentives — and what it means for the states that thought they were spectators.</div>
+      <div class="card-excerpt">
+        The war that began on February 28, 2026 has been framed as a conflict about nuclear proliferation and regional hegemony. That framing is not wrong. But it is incomplete — and the part it omits is the part that matters most for the countries of the Arabian Gulf, who are absorbing Iranian missiles while watching their economic futures be quietly restructured by the very ally whose bases sit on their soil.
+      </div>
+      <span class="card-arrow">Read →</span>
+    </a>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">NUSOFIA</div>
+  <p>© 2026 Phi Kosmos Developments LLC · Abu Dhabi · The corpus is free</p>
+  <div class="footer-social">
+    <a href="https://x.com/NusofiaHQ" target="_blank">X / Twitter</a>
+    <a href="https://www.linkedin.com/company/nusofia" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
