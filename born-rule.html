@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Born Rule as Codec Overlap Consistency — Nusofia</title>
+  <meta name="description" content="A conditional derivation of the Born rule within Codec Theory. A category-theoretic bridge to Observer Patch Holography. Research note, Nusofia — April 2026.">
+  <meta property="og:title" content="Born Rule as Codec Overlap Consistency — Nusofia">
+  <meta property="og:description" content="Category-theoretic bridge between Codec Theory and Observer Patch Holography. A conditional derivation of the Born rule at the sector level.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://nusofia.com/born-rule.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #0D0D1A;
+      --bg2: #12121F;
+      --dark: #1A1A2E;
+      --gold: #C9A84C;
+      --gold-dim: #A08A3E;
+      --gold-glow: rgba(201,168,76,0.08);
+      --cream: #F7F5F0;
+      --cream-dim: #D4D0C8;
+      --body-text: #C8C4BC;
+      --muted: #7A7670;
+      --border: rgba(201,168,76,0.12);
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --display: 'Cinzel', Georgia, serif;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--body-text);
+      font-family: var(--serif);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--gold); color: var(--black); }
+
+    /* NAV */
+    .nav {
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      padding:1.2rem 2rem;
+      display:flex; justify-content:space-between; align-items:center;
+      background:rgba(13,13,26,0.85);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-logo {
+      font-family:var(--sans); font-size:0.75rem; font-weight:700;
+      letter-spacing:0.25em; color:var(--gold); text-decoration:none; text-transform:uppercase;
+    }
+    .nav-links { display:flex; gap:1.5rem; flex-wrap:wrap; }
+    .nav-link {
+      font-family:var(--sans); font-size:0.72rem; color:var(--muted);
+      text-decoration:none; letter-spacing:0.08em; transition:color 0.3s;
+    }
+    .nav-link:hover { color:var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height:62vh;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; padding:8rem 2rem 4rem;
+    }
+    .hero-label {
+      font-family:var(--sans); font-size:0.65rem; letter-spacing:0.3em;
+      text-transform:uppercase; color:var(--gold-dim); margin-bottom:2rem; display:block;
+    }
+    .hero h1 {
+      font-family:var(--display); font-size:clamp(26px,4vw,44px);
+      font-weight:600; color:var(--cream); line-height:1.25; margin-bottom:1rem;
+      max-width: 820px;
+    }
+    .hero .subtitle {
+      font-family:var(--serif); font-size:clamp(15px,1.8vw,19px);
+      font-style:italic; color:var(--gold-dim); max-width:640px; line-height:1.6;
+    }
+    .hero .meta {
+      font-family:var(--sans); font-size:0.7rem; color:var(--muted);
+      letter-spacing:0.1em; margin-top:2rem;
+    }
+
+    /* CONTENT */
+    .content {
+      max-width:760px; margin:0 auto; padding:0 2rem 6rem;
+    }
+
+    .abstract {
+      font-family:var(--serif); font-size:16px; color:var(--cream-dim);
+      line-height:1.75; margin-bottom:3.5rem; padding:1.6rem 1.9rem;
+      border-left:2px solid var(--gold-dim); background:var(--bg2);
+    }
+    .abstract-label {
+      font-family:var(--sans); font-size:0.65rem; letter-spacing:0.28em;
+      text-transform:uppercase; color:var(--gold); display:block; margin-bottom:0.8rem;
+    }
+
+    .section {
+      margin-bottom:3.5rem; padding-bottom:3.5rem;
+      border-bottom:1px solid rgba(201,168,76,0.08);
+    }
+    .section:last-of-type { border-bottom:none; }
+
+    .section-num {
+      font-family:var(--display); font-size:12px; letter-spacing:0.3em;
+      color:var(--gold); display:block; margin-bottom:0.5rem;
+    }
+    .section h2 {
+      font-family:var(--display); font-size:clamp(18px,2.5vw,24px);
+      font-weight:600; color:var(--cream); margin-bottom:1.4rem; line-height:1.35;
+    }
+    .section h3 {
+      font-family:var(--display); font-size:clamp(15px,1.8vw,17px);
+      font-weight:500; color:var(--cream); margin:2rem 0 0.9rem; line-height:1.4;
+      letter-spacing:0.02em;
+    }
+    .section p {
+      font-family:var(--serif); font-size:16.5px; color:var(--cream-dim);
+      margin-bottom:1rem; line-height:1.75;
+    }
+    .section ul { margin:0.4rem 0 1rem 1.4rem; }
+    .section li {
+      font-family:var(--serif); font-size:16.5px; color:var(--cream-dim);
+      margin-bottom:0.5rem; line-height:1.75;
+    }
+
+    .theorem {
+      font-family:var(--serif); font-size:15.5px; color:var(--cream-dim);
+      padding:16px 22px; margin:1.3rem 0;
+      border-left:2px solid var(--gold);
+      background:rgba(201,168,76,0.04);
+    }
+    .theorem .label {
+      font-family:var(--sans); font-size:0.68rem; letter-spacing:0.22em;
+      text-transform:uppercase; color:var(--gold); display:block; margin-bottom:0.6rem;
+    }
+    .theorem em, .theorem i { color:var(--cream); }
+
+    .proof {
+      font-family:var(--serif); font-size:15.5px; font-style:italic;
+      color:var(--body-text); padding:12px 20px; margin:0.8rem 0 1.4rem;
+      border-left:1px solid rgba(201,168,76,0.2);
+    }
+    .proof .label {
+      font-family:var(--sans); font-size:0.65rem; letter-spacing:0.2em;
+      text-transform:uppercase; color:var(--gold-dim); font-style:normal;
+      display:inline-block; margin-right:0.6rem;
+    }
+    .proof-end { color:var(--gold); font-style:normal; }
+
+    .assumption {
+      font-family:var(--serif); font-size:15.5px; color:var(--cream-dim);
+      padding:10px 18px; margin:0.7rem 0;
+      border-left:1px solid rgba(201,168,76,0.25);
+      background:rgba(201,168,76,0.025);
+    }
+    .assumption strong { color:var(--gold); font-weight:600; }
+
+    .remark {
+      font-family:var(--serif); font-size:15.5px; color:var(--body-text);
+      padding:10px 18px; margin:1rem 0;
+      border-left:1px dashed rgba(201,168,76,0.2);
+    }
+    .remark strong { color:var(--cream); font-weight:600; }
+
+    .math {
+      font-family:'EB Garamond', Georgia, serif; font-style:italic;
+      text-align:center; display:block; margin:1.1rem 0;
+      color:var(--cream); font-size:16.5px;
+    }
+
+    .scope {
+      margin:1.6rem 0; padding:1.3rem 1.6rem;
+      border:1px solid rgba(201,168,76,0.15);
+      background:var(--bg2);
+    }
+    .scope-title {
+      font-family:var(--sans); font-size:0.7rem; letter-spacing:0.24em;
+      text-transform:uppercase; color:var(--gold); display:block; margin-bottom:0.9rem;
+    }
+    .scope p { font-size:15.5px; margin-bottom:0.7rem; }
+    .scope p:last-child { margin-bottom:0; }
+    .scope em { color:var(--cream); font-style:italic; }
+
+    .diagram {
+      font-family:'DM Sans', monospace; font-size:14px;
+      color:var(--cream-dim); text-align:center;
+      padding:1.2rem; margin:1.3rem 0;
+      background:var(--bg2); border-left:2px solid var(--gold-dim);
+      line-height:2;
+    }
+
+    .references {
+      font-family:var(--serif); font-size:14.5px; color:var(--body-text);
+      line-height:1.65;
+    }
+    .references p { font-size:14.5px; margin-bottom:0.8rem; text-indent:-1.2rem; padding-left:1.2rem; }
+
+    .closing {
+      font-family:var(--serif); font-style:italic; font-size:15.5px;
+      color:var(--cream-dim); padding:2rem;
+      background:var(--bg2); border:1px solid rgba(201,168,76,0.1);
+      margin-top:3rem; line-height:1.75;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align:center; padding:3rem 2rem;
+      border-top:1px solid var(--border);
+    }
+    .footer-brand {
+      font-family:var(--display); font-size:0.85rem;
+      letter-spacing:0.25em; color:var(--gold-dim);
+    }
+    footer p { font-size:0.85rem; color:var(--muted); margin-top:0.8rem; }
+    .footer-social { margin-top:1rem; display:flex; justify-content:center; gap:1.5rem; }
+    .footer-social a { font-size:0.85rem; color:var(--gold-dim); text-decoration:none; transition:color 0.3s; }
+    .footer-social a:hover { color:var(--gold); }
+
+    /* ANIMATIONS */
+    .reveal { opacity:0; transform:translateY(20px); transition:all 0.7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media (max-width:768px) {
+      .nav { padding:1rem 1.2rem; flex-wrap:wrap; gap:0.5rem; }
+      .nav-links { gap:0.8rem; }
+      .hero { padding:7rem 1.5rem 3rem; }
+      .content { padding:0 1.5rem 4rem; }
+      .math { font-size:15px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Nusofia</a>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="codec-theory.html" class="nav-link">Codec Theory</a>
+    <a href="born-rule.html" class="nav-link" style="color:var(--gold);">Born Rule</a>
+    <a href="axiomatic-framework.html" class="nav-link">Axioms</a>
+    <a href="auag.html" class="nav-link">AuAg Protocol</a>
+    <a href="signal.html" class="nav-link">Signal</a>
+    <a href="https://x.com/NusofiaHQ" target="_blank" class="nav-link">X</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="hero-label">Research Note · Companion to Codec Theory</span>
+  <h1>Born Rule as Codec Overlap Consistency</h1>
+  <p class="subtitle">A category-theoretic bridge between Codec Theory<br>and Observer Patch Holography</p>
+  <p class="meta">Michele Zampighi &nbsp;·&nbsp; Nusofia / Phi Kosmos &nbsp;·&nbsp; April 2026</p>
+</div>
+
+<div class="content">
+
+  <div class="abstract reveal">
+    <span class="abstract-label">Abstract</span>
+    We present a conditional derivation of the Born rule within Codec Theory, the formal ontological framework developed in Nusofia (Zampighi, 2026). Codec Theory describes reality as a foundational relational structure <em>P</em> — the Point — together with a family of compression functors <em>F<sub>i</sub></em> : <em>P</em> → <em>E<sub>i</sub></em>, each encoding an observer's phenomenal world. We show that once a GNS-type Hilbert space is associated to the overlap algebra of two codec functors <em>F</em><sub>1</sub> and <em>F</em><sub>2</sub>, the only probability assignment over states in the overlap region that is simultaneously (i) consistent with the boundary symmetry <em>G<sub>Σ</sub></em> of the overlap, (ii) of maximum entropy given the computational constraint <em>B</em>, and (iii) normalised, takes the form p(α) = Tr(ρ P<sub>α</sub>) — the Born rule restricted to sectors. The proof uses the Edge-Center decomposition of overlapping algebra patches, Schur's lemma for the boundary symmetry group, and the maximum-entropy state selection theorem. We isolate the required inputs in an Assumptions Ledger (§2.4) so that the conditional nature of the derivation is visible. We further show that Observer Patch Holography's screen capacity <em>N</em><sub>scr</sub> is an instance of <em>B</em>, and formulate — as a conjecture — the claim that a theory of <em>B</em> closes the principal open external input in OPH. The two frameworks are structurally dual: OPH ascends from physics to a timeless relational closure; Codec Theory descends from that closure and reconstructs physics as output. The Born rule is the invariant where the two derivation chains meet.
+  </div>
+
+  <!-- I -->
+  <div class="section reveal">
+    <span class="section-num">I</span>
+    <h2>Introduction</h2>
+    <p>Two independent research programs have arrived, from opposite directions, at the claim that physics is not a primitive structure but an emergent consequence of observer-consistency constraints.</p>
+    <p>Observer Patch Holography (OPH; Müller and Nguyen, 2026) begins inside physics. It posits a holographic screen <em>S</em>² carrying a net of von Neumann algebras, and derives quantum mechanics, general relativity, and Standard Model gauge structure from five axioms governing how overlapping local observer descriptions must agree on shared observables. The framework closes with a "strange-loop hypothesis": reality is a self-referential timeless causal structure.</p>
+    <p>Codec Theory (Zampighi, 2026) begins outside physics. It posits <em>P</em> — a foundational relational structure that is atemporal, aspatial, and contains all states simultaneously — and shows that each observer compresses <em>P</em> through a lossy functor <em>F</em> : <em>P</em> → <em>E</em>, producing a phenomenal world <em>E</em> whose structure (space, time, physical laws) is determined by the observer's computational constraint <em>B</em>. Physics is one such output; it is not in <em>P</em>.</p>
+    <p>The structural correspondence between the two frameworks is precise. OPH's observer patch is Codec Theory's functor domain; OPH's overlap consistency is Codec Theory's compatibility relation; OPH's screen capacity is Codec Theory's constraint <em>B</em>; OPH's strange-loop closure is the reflexive compression of the codec into its own map, which Codec Theory treats as the origin, not the terminus, of the derivation.</p>
+    <p>OPH explicitly identifies a "closed fixed-cutoff Born-rule package" in its Screen Microphysics lane (§6 of the synthesis paper). The derivation proceeds through the Edge-Center (EC) decomposition of overlapping algebra patches and the MaxEnt state selection theorem. In this note we show that the same derivation is available in Codec Theory's category-theoretic language, where it takes a cleaner form because the foundational layer <em>P</em> is not constructed from physical assumptions but is given as the primitive relational structure.</p>
+    <p>We are, however, explicit about what this derivation does <em>not</em> do. The argument is conditional on a set of assumptions — chief among them the availability of a Hilbert-space representation of the overlap algebra — that must be imported into the purely categorical setting of <em>P</em>. We isolate these inputs in §2.4 rather than smuggling them into the proofs. Within that ledger, the derivation is sound; outside it, work remains.</p>
+    <p>We also address the principal open external input in OPH. The synthesis paper treats the total screen capacity <em>N</em><sub>scr</sub> ≈ 10<sup>122</sup> as an external input, explicitly not derived from the axioms. We conjecture that this quantity is precisely Codec Theory's constraint <em>B</em> instantiated for our universe, and sketch the direction in which a theory of <em>B</em> would close this gap.</p>
+  </div>
+
+  <!-- II -->
+  <div class="section reveal">
+    <span class="section-num">II</span>
+    <h2>Formal Setup</h2>
+
+    <h3>2.1 &nbsp; The Point and the compatibility relation</h3>
+    <p>Let <em>P</em> be a small category whose objects are states and whose morphisms are the minimal relational units of reality. <em>P</em> carries no temporal or spatial structure; time and space are not properties of <em>P</em> but of its images under observation.</p>
+    <p>Define a <strong>compatibility relation</strong> <em>C</em> on <em>P</em>: two states <em>a</em>, <em>b</em> ∈ <em>P</em> are compatible, written <em>a</em> ∼<sub><em>C</em></sub> <em>b</em>, if there exists a morphism chain from <em>a</em> to <em>b</em> that composes coherently. <em>C</em> is reflexive and symmetric but not necessarily transitive; non-transitivity allows for gradient coherence zones. A maximal mutually compatible subcategory of <em>P</em> is a <strong>World</strong> — our universe is one such World.</p>
+
+    <h3>2.2 &nbsp; Codec functors</h3>
+    <p>An <strong>observer</strong> is a finite-capacity computational system characterized by a constraint <em>B</em> ∈ ℝ<sub>&gt;0</sub>, representing the maximal information the observer can maintain in a navigable representation. The observer's <strong>codec</strong> is a functor</p>
+    <div class="math">F : P → E</div>
+    <p>where <em>E</em> is the observer's phenomenal category, whose objects include spatiotemporally indexed states and whose morphisms encode causal and physical relations. <em>F</em> is not faithful: many distinct objects of <em>P</em> are mapped to the same object in <em>E</em>. The <strong>identification class</strong> of <em>F</em> is the equivalence relation</p>
+    <div class="math">ker(F) := { (a, b) ∈ Ob(P) × Ob(P) : F(a) ≅ F(b) in E }.</div>
+    <p>The information loss — the coarseness of ker(<em>F</em>) — is controlled by <em>B</em>: a larger <em>B</em> yields a less lossy functor, a finer identification, and a richer <em>E</em>. The physical laws of <em>E</em> are the structural invariants of <em>F</em>. They are parameters of the codec, not properties of <em>P</em>.</p>
+
+    <h3>2.3 &nbsp; The overlap region</h3>
+    <p>Let <em>F</em><sub>1</sub> : <em>P</em> → <em>E</em><sub>1</sub> and <em>F</em><sub>2</sub> : <em>P</em> → <em>E</em><sub>2</sub> be two codec functors with constraints <em>B</em><sub>1</sub>, <em>B</em><sub>2</sub>. Their <strong>overlap region</strong> is the full subcategory</p>
+    <div class="math">P<sub>12</sub> := { s ∈ P : F<sub>1</sub>(s) and F<sub>2</sub>(s) are mutually compatible }.</div>
+    <p>This is the region of <em>P</em> that both observers can, in principle, represent — though they may represent it differently. The overlap region is where their two encodings must be reconciled.</p>
+
+    <h3>2.4 &nbsp; Assumptions Ledger</h3>
+    <p>The category-theoretic layer above is not by itself sufficient to state the theorems of §§3–5. A Hilbert-space representation of the overlap algebra is required, together with a finite family of gauge-invariant observables and a compact symmetry group. We record these inputs explicitly so that the conditional nature of the derivation is visible.</p>
+    <div class="assumption"><strong>(A1) Overlap algebra.</strong> To the collar region <em>B</em><sub>δ</sub> ⊂ <em>P</em><sub>12</sub> (defined in §3) there is associated a unital C*-algebra A(<em>B</em><sub>δ</sub>) whose self-adjoint elements are the observables jointly representable by both codecs on the collar. The existence of such an algebra is the non-trivial bridge from the bare category <em>P</em> to operator-algebraic structure; in OPH it is given by construction, in Codec Theory it is imported.</div>
+    <div class="assumption"><strong>(A2) GNS-type representation.</strong> There exists a state φ on A(<em>B</em><sub>δ</sub>) whose GNS construction yields a Hilbert space Ħ<sub>δ</sub> carrying a faithful representation of A(<em>B</em><sub>δ</sub>). We work throughout at this fixed representation; the dependence of the derivation on the choice of φ is not addressed here and is flagged among the open problems (§7.2).</div>
+    <div class="assumption"><strong>(A3) Finite-dimensional cutoff.</strong> A(<em>B</em><sub>δ</sub>) is finite-dimensional. This matches OPH's fixed-cutoff Screen Microphysics lane and is what allows Schur's lemma and the MaxEnt theorem to apply in their standard form. The continuum limit is deferred to §7.2(iv).</div>
+    <div class="assumption"><strong>(A4) Compact boundary symmetry.</strong> There exists a compact group <em>G</em><sub>Σ</sub> acting on A(<em>B</em><sub>δ</sub>) by automorphisms, fixing the observables jointly accessible to both codecs on the boundary Σ = ∂<em>B</em><sub>δ</sub>. <em>G</em><sub>Σ</sub> is the symmetry group of the compatibility relation <em>C</em> restricted to the collar.</div>
+    <div class="assumption"><strong>(A5) Finite constraint data.</strong> The computational bound <em>B</em> fixes a finite family of gauge-invariant local observables { <em>O<sub>a</sub></em> } with prescribed expectation values { <em>c<sub>a</sub></em> }.</div>
+    <p style="margin-top:1.1rem;">Assumptions (A1)–(A5) are the complete input required for Theorems 3.1, 4.1 and 5.1 below. Everything downstream is structural.</p>
+  </div>
+
+  <!-- III -->
+  <div class="section reveal">
+    <span class="section-num">III</span>
+    <h2>The Edge-Center Decomposition of Overlapping Codecs</h2>
+    <p>Fix a collar region <em>B</em><sub>δ</sub> ⊂ <em>P</em><sub>12</sub> between the two codec domains, with associated Hilbert space Ħ<sub>δ</sub> and compact boundary group <em>G</em><sub>Σ</sub> as in (A1)–(A4). The following is the direct analogue of OPH's gauge-as-gluing construction.</p>
+
+    <div class="theorem">
+      <span class="label">Theorem 3.1 · Edge-Center decomposition for codec overlap</span>
+      <em>Under assumptions (A1)–(A4), the Hilbert space Ħ<sub>δ</sub> admits a decomposition</em>
+      <div class="math">Ħ<sub>δ</sub> ≅ ⊕<sub>α</sub> ( Ĥ<sub>α</sub><sup>L</sup> ⊗ Ĥ<sub>α</sub><sup>R</sup> )</div>
+      <em>where α indexes the irreducible representations of G<sub>Σ</sub> that appear, Ĥ<sub>α</sub><sup>L</sup> is the subspace accessible to F<sub>1</sub>, and Ĥ<sub>α</sub><sup>R</sup> to F<sub>2</sub>. The center of the overlap algebra is</em>
+      <div class="math">Z(A(B<sub>δ</sub>)) = ⊕<sub>α</sub> ℂ · 1<sub>α</sub>.</div>
+    </div>
+
+    <div class="proof">
+      <span class="label">Proof.</span> The compact group <em>G</em><sub>Σ</sub> acts on A(<em>B</em><sub>δ</sub>) by automorphisms, which lift — via (A2) and finite-dimensionality (A3) — to a unitary representation on Ħ<sub>δ</sub>. Decomposing Ħ<sub>δ</sub> into <em>G</em><sub>Σ</sub>-isotypic components yields Ħ<sub>δ</sub> ≅ ⊕<sub>α</sub> (<em>V</em><sub>α</sub> ⊗ <em>M</em><sub>α</sub>), where <em>V</em><sub>α</sub> is the irreducible module of type α and <em>M</em><sub>α</sub> its multiplicity space. Partitioning the joint boundary data into left- and right-accessible factors identifies <em>M</em><sub>α</sub> ≅ Ĥ<sub>α</sub><sup>L</sup> ⊗ Ĥ<sub>α</sub><sup>R</sup>. By Schur's lemma the <em>G</em><sub>Σ</sub>-invariant elements of End(Ħ<sub>δ</sub>) act as scalars on each <em>V</em><sub>α</sub>, so the center of the invariant subalgebra is the direct sum of these scalars, i.e. ⊕<sub>α</sub> ℂ · 1<sub>α</sub>. <span class="proof-end">∎</span>
+    </div>
+
+    <p>The center <em>Z</em>(A(<em>B</em><sub>δ</sub>)) is precisely the <strong>classically copiable part</strong> of the overlap: by the no-cloning theorem, arbitrary quantum states cannot be copied, but elements of the center can. This identifies the overlap center as the "record layer" — the part of the shared representation that both codecs can faithfully retain without mutual disturbance.</p>
+  </div>
+
+  <!-- IV -->
+  <div class="section reveal">
+    <span class="section-num">IV</span>
+    <h2>Maximum Entropy on the Overlap Kernel</h2>
+    <p>The kernel intersection ker(<em>F</em><sub>1</sub>) ∩ ker(<em>F</em><sub>2</sub>) contains the states of <em>P</em> that both codecs identify: what is genuinely indistinguishable to both observers. For states <em>s</em> ∈ <em>P</em><sub>12</sub> that lie outside this intersection — distinguishable by at least one of the two codecs — a probability assignment is required.</p>
+    <p>By (A5), the constraint <em>B</em> fixes the observables { <em>O<sub>a</sub></em> } with expectation values { <em>c<sub>a</sub></em> } on the overlap.</p>
+
+    <div class="theorem">
+      <span class="label">Lemma 4.1 · MaxEnt on the overlap implies Gibbs form</span>
+      <em>Under assumptions (A1)–(A5), the unique state ω on A(B<sub>δ</sub>) that maximizes the von Neumann entropy S(ρ) = − Tr(ρ log ρ) subject to ⟨O<sub>a</sub>⟩<sub>ρ</sub> = c<sub>a</sub> for all a is the Gibbs state</em>
+      <div class="math">ω ∝ exp( − Σ<sub>a</sub> λ<sub>a</sub> O<sub>a</sub> )</div>
+      <em>where λ<sub>a</sub> are Lagrange multipliers fixed by the constraints.</em>
+    </div>
+
+    <div class="proof">
+      <span class="label">Proof.</span> Standard exponential-family result on a finite-dimensional algebra: the maximum-entropy state subject to finitely many linear constraints is the Gibbs state with Lagrange multipliers. Strict concavity of <em>S</em> ensures uniqueness. <span class="proof-end">∎</span>
+    </div>
+
+    <p>On the EC-decomposed overlap space Ħ<sub>δ</sub> = ⊕<sub>α</sub>(Ĥ<sub>α</sub><sup>L</sup> ⊗ Ĥ<sub>α</sub><sup>R</sup>), the MaxEnt state takes the block form</p>
+    <div class="math">ω = ⊕<sub>α</sub> p<sub>α</sub> ( ρ<sub>α</sub><sup>L</sup> ⊗ ρ<sub>α</sub><sup>R</sup> )</div>
+    <p>with <em>p</em><sub>α</sub> ≥ 0 and Σ<sub>α</sub> <em>p</em><sub>α</sub> = 1. The block weights <em>p</em><sub>α</sub> are fixed by the values of the <em>G</em><sub>Σ</sub>-invariant observables among { <em>O<sub>a</sub></em> }.</p>
+  </div>
+
+  <!-- V -->
+  <div class="section reveal">
+    <span class="section-num">V</span>
+    <h2>The Born Rule</h2>
+
+    <div class="theorem">
+      <span class="label">Theorem 5.1 · Born rule from codec overlap consistency</span>
+      <em>Let F<sub>1</sub>, F<sub>2</sub> : P → Cat be two codec functors satisfying assumptions (A1)–(A5), with overlap P<sub>12</sub> and boundary group G<sub>Σ</sub>. Any probability assignment p on the sectors α ∈ Irr(G<sub>Σ</sub>) of the EC decomposition that satisfies</em>
+      <ul style="margin:0.7rem 0 0.7rem 1.3rem; font-style:italic; color:var(--cream-dim);">
+        <li>(i) G<sub>Σ</sub>-equivariance: p depends only on the sector α,</li>
+        <li>(ii) maximum entropy under the constraint data of (A5),</li>
+        <li>(iii) normalization Σ<sub>α</sub> p(α) = 1,</li>
+      </ul>
+      <em>takes the form</em>
+      <div class="math">p(α) = Tr(ω P<sub>α</sub>)</div>
+      <em>where P<sub>α</sub> is the orthogonal projector onto the α-block of the EC decomposition and ω is the MaxEnt state of Lemma 4.1.</em>
+    </div>
+
+    <div class="proof">
+      <span class="label">Proof.</span> By Theorem 3.1 the overlap algebra has center <em>Z</em>(A(<em>B</em><sub>δ</sub>)) = ⊕<sub>α</sub> ℂ · 1<sub>α</sub>, and any <em>G</em><sub>Σ</sub>-equivariant probability assignment must, by Schur's lemma, be constant on each irreducible sector and therefore factor through the projectors { <em>P</em><sub>α</sub> } onto the isotypic components. This reduces (i) to the requirement that <em>p</em> be of the form p(α) = Tr(ρ <em>P</em><sub>α</sub>) for some state ρ on A(<em>B</em><sub>δ</sub>). Condition (ii) selects ρ uniquely as the MaxEnt state ω of Lemma 4.1. Condition (iii) is automatic since Σ<sub>α</sub> <em>P</em><sub>α</sub> = 1 and Tr(ω) = 1. Hence p(α) = Tr(ω P<sub>α</sub>). <span class="proof-end">∎</span>
+    </div>
+
+    <div class="scope">
+      <span class="scope-title">Scope of the result</span>
+      <p><em>What is obtained.</em> Given (A1)–(A5), the shape of any admissible probability assignment on the overlap is forced to be the quadratic sector-trace p(α) = Tr(ρ P<sub>α</sub>). This is the essential content of the Born rule at the level of sectors: the squared-amplitude form is not a postulate but a consequence of overlap equivariance.</p>
+      <p><em>What is assumed.</em> The operator-algebraic and Hilbert-space scaffolding (A1)–(A3) is imported, not derived from the bare category <em>P</em>. The choice of reference state φ in (A2), which fixes the GNS representation, is not addressed.</p>
+      <p><em>What remains open.</em> (a) Whether every admissible choice of φ yields an equivalent derivation; (b) extension of the argument beyond sectors to full rays; (c) the continuum limit; (d) a derivation of (A1) itself from categorical data on <em>P</em>.</p>
+    </div>
+
+    <div class="remark"><strong>Remark 5.2.</strong> The derivation makes no reference to the standard quantum mechanical postulates: no state vector, no unitary evolution, no measurement postulate is assumed at the outset. The Born rule is recovered from two structural requirements — overlap equivariance and computational boundedness — together with the operator-algebraic scaffolding in the Assumptions Ledger.</div>
+
+    <div class="remark"><strong>Remark 5.3.</strong> The EC center <em>Z</em>(A(<em>B</em><sub>δ</sub>)) = ⊕<sub>α</sub> ℂ · 1<sub>α</sub> is the <strong>record layer</strong>: the classically copiable fragment of the overlap. In OPH's language, this is the record tuple <em>R</em><sub>O</sub> of an observer. In Codec Theory's language, it is the self-referential fragment of the functor — what the codec retains of itself in its own map.</div>
+  </div>
+
+  <!-- VI -->
+  <div class="section reveal">
+    <span class="section-num">VI</span>
+    <h2>The Constraint B and the Open Input in OPH</h2>
+    <p>OPH uses two external continuous inputs that are not derived from its five axioms (Synthesis paper, §3.2.4):</p>
+    <div class="math">p ≡ a<sub>cell</sub> / ℓ<sub>P</sub><sup>2</sup> = 1.63094 &nbsp;&nbsp; (pixel area)</div>
+    <div class="math">N<sub>scr</sub> ≡ log dim H<sub>tot</sub> ∼ 10<sup>122</sup> &nbsp;&nbsp; (total screen capacity)</div>
+    <p>The synthesis paper is explicit: "These are implementation inputs. They are not extra axioms." The derivation of <em>N</em><sub>scr</sub> from first principles remains open.</p>
+
+    <div class="theorem">
+      <span class="label">Conjecture 6.1 · N<sub>scr</sub> as an instance of B</span>
+      <em>The total screen capacity N<sub>scr</sub> is the computational constraint B of the World in which we are observers, evaluated at the horizon scale. Formally: N<sub>scr</sub> = log dim(F(P<sub>W</sub>)), where P<sub>W</sub> is the maximal mutually compatible subcategory of P to which our codec is tuned, and F is our codec functor.</em>
+    </div>
+
+    <div class="proof">
+      <span class="label">Motivating sketch.</span> In Codec Theory, <em>B</em> is the maximum number of distinguishable states the codec can represent simultaneously. If the OPH screen is read as <em>F</em>(<em>P</em><sub>W</sub>) — the image of our World through our codec — then its dimension is the total capacity of our representation, and the cosmological bound <em>N</em><sub>scr</sub> ≈ 10<sup>122</sup> is <em>B</em> at horizon scale. We mark this as a conjecture rather than a theorem because the identification <em>F</em>(<em>P</em><sub>W</sub>) ↔ OPH screen requires a matching of the two frameworks at the level of observable content, not merely cardinality; a full proof would need to exhibit the functor <em>F</em> explicitly on a class of test states.
+    </div>
+
+    <div class="theorem">
+      <span class="label">Conjecture 6.2 · A theory of B closes OPH's open input</span>
+      <em>If the value of B can be determined intrinsically from the structure of P and the compatibility relation C — without reference to physical data — then the external-input status of N<sub>scr</sub> in OPH is removed.</em>
+    </div>
+
+    <p>We suggest the following direction of attack: <em>B</em> is the fixed point of the self-referential compression problem — the value at which the codec's model of itself (its reflexive loop) is stable. A codec with <em>B</em> too small cannot maintain a coherent self-model; a codec with <em>B</em> too large cannot be implemented by a finite physical process. The observed value <em>N</em><sub>scr</sub> ≈ 10<sup>122</sup> would then be the self-consistent fixed point for a universe containing reflexive observers. Formulating "stable reflexive loop" precisely — so that uniqueness of the fixed point can be tested — is itself an open problem.</p>
+
+    <div class="remark"><strong>Remark 6.3.</strong> This connects to OPH's Minimal Admissible Realization axiom (MAR, Axiom 5): the lexicographically minimal sector package is selected on admissible low-energy branches. In Codec Theory's terms, MAR reads as the statement that the codec selects the most compressed representation compatible with self-consistency. Under Conjecture 6.2, MAR would cease to be an axiom and become a consequence of the self-referential stability condition on <em>B</em>.</div>
+  </div>
+
+  <!-- VII -->
+  <div class="section reveal">
+    <span class="section-num">VII</span>
+    <h2>Discussion</h2>
+
+    <h3>7.1 &nbsp; Structural duality</h3>
+    <p>OPH and Codec Theory are structurally dual in the following sense. OPH begins with observer patches and derives, conditionally, the timeless relational structure that closes the framework (the strange-loop hypothesis, Appendix B of the synthesis paper). Codec Theory begins with that timeless relational structure <em>P</em> and derives physics as a codec output. The Born rule is the invariant: both frameworks predict it, from opposite directions, and — within their respective assumptions — the two derivation chains produce the same formal object.</p>
+
+    <div class="diagram">
+      OPH:&nbsp;&nbsp;&nbsp;&nbsp;physics &nbsp;⇒&nbsp; overlap consistency &nbsp;⇒&nbsp; timeless closure<br>
+      Codec:&nbsp;&nbsp;timeless <em>P</em> &nbsp;⇒&nbsp; codec functor &nbsp;⇒&nbsp; physics<br>
+      Both:&nbsp;&nbsp;&nbsp;Born rule lives at the overlap — the invariant of the crossing
+    </div>
+
+    <p>This suggests a <strong>bridge conjecture</strong>: any derivation chain that starts from <em>P</em> and arrives at observer-consistent physics must pass through the Born rule, and any chain that starts from observer-consistent physics and closes into a timeless structure must produce <em>P</em>. We state this as a conjecture, not a theorem: the present note establishes one direction at the sector level and under (A1)–(A5); the converse and the unconditional form remain open.</p>
+
+    <h3>7.2 &nbsp; What remains open</h3>
+    <p>We list, without softening, the problems this note does not resolve.</p>
+    <p><strong>(i) The operator-algebraic bridge.</strong> Assumptions (A1)–(A3) are imported rather than derived from <em>P</em>. A proof that the overlap of two codec functors canonically induces a finite-dimensional C*-algebra with a distinguished state would remove this input.</p>
+    <p><strong>(ii) The value of B.</strong> Conjecture 6.1 identifies <em>N</em><sub>scr</sub> as an instance of <em>B</em>; Conjecture 6.2 formulates the self-consistent fixed-point condition. A proof requires specifying the stability criterion for the reflexive loop in category-theoretic terms and showing it has a unique solution.</p>
+    <p><strong>(iii) The gauge group from C.</strong> OPH derives SU(3) × SU(2) × U(1) / ℤ<sub>6</sub> from sector structure and the MAR axiom. Codec Theory predicts that the gauge group is the symmetry group that <em>C</em> must preserve under codec composition. A direct derivation of <em>G</em><sub>Σ</sub> = SU(3) × SU(2) × U(1) / ℤ<sub>6</sub> from the self-consistency of <em>C</em> remains to be shown.</p>
+    <p><strong>(iv) The continuum limit.</strong> The present derivation works at fixed cutoff (finite-dimensional algebras, A3). Extending it through the scaling limit <em>T</em>² of OPH, with the geometric cap-pair extraction and ordered cut-pair rigidity, would complete the connection to continuum quantum field theory.</p>
+    <p><strong>(v) Full Born rule beyond sectors.</strong> Theorem 5.1 derives the Born rule at the level of sector probabilities. Extending the argument from sectors to arbitrary rays — recovering p(ψ) = |⟨ψ|φ⟩|² in full generality — requires additional structure that we do not develop here.</p>
+
+    <h3>7.3 &nbsp; Relation to the hard problem of consciousness</h3>
+    <p>The record layer identified in Remark 5.3 — <em>Z</em>(A(<em>B</em><sub>δ</sub>)), the center of the overlap algebra — is the classically copiable fragment of an observer's overlap with another observer. In Codec Theory's framing, this is also what qualia are: the feedback signal generated when a codec compresses itself into its own map. The intensity of a quale is proportional to the size and coherence of the record layer, which is in turn proportional to <em>B</em>.</p>
+    <p>A philosophical zombie — a system with all the functional properties of a conscious system but no subjective experience — is structurally impossible in this framework: the record layer is not optional. It is the mechanism by which the codec maintains self-consistency of probability assignments on its own outputs. Remove the record layer and Theorem 5.1 loses its anchor; the codec cannot assign consistent probabilities to the sectors of its own overlap. <em>This argument is sketched, not formalized, and we flag it as such.</em></p>
+  </div>
+
+  <!-- References -->
+  <div class="section reveal">
+    <span class="section-num">—</span>
+    <h2>References</h2>
+    <div class="references">
+      <p>Müller, B. and Nguyen, P. (2026a). "Observers Are All You Need." Observer Patch Holography Synthesis Paper, r1378. floatingpragma.io.</p>
+      <p>Müller, B. and Nguyen, P. (2026b). "Recovering Relativity and Standard Model Structure from Observer-Overlap Consistency." OPH companion paper.</p>
+      <p>Müller, B. and Nguyen, P. (2026c). "Reality as a Consensus Protocol." OPH companion paper.</p>
+      <p>Müller, B. and Nguyen, P. (2026d). "Screen Microphysics, Patches, and Observer Synchronization in OPH." OPH companion paper.</p>
+      <p>Zampighi, M. (2026). <em>Nusofia — Dispatches from Beyond</em>. nusofia.com.</p>
+      <p>Zampighi, M. and Claude (Anthropic) (2026). "Nusofia e la Teoria dei Codec." Companion document to the Nusofia corpus. nusofia.com/codec-theory.</p>
+      <p>Doplicher, S. and Roberts, J. E. (1989). "A new duality theory for compact groups." <em>Inventiones Mathematicae</em> 98, 157–218.</p>
+      <p>Doplicher, S. and Roberts, J. E. (1990). "Why there is a field algebra with a compact gauge group describing the superselection structure in particle physics." <em>Communications in Mathematical Physics</em> 131, 51–107.</p>
+      <p>Fawzi, O. and Renner, R. (2015). "Quantum Conditional Mutual Information and Approximate Markov Chains." <em>Communications in Mathematical Physics</em> 340, 575–611.</p>
+      <p>Jacobson, T. (1995). "Thermodynamics of Spacetime: The Einstein Equation of State." <em>Physical Review Letters</em> 75, 1260.</p>
+      <p>Jacobson, T. (2016). "Entanglement Equilibrium and the Einstein Equation." <em>Physical Review Letters</em> 116, 201101.</p>
+    </div>
+  </div>
+
+  <div class="closing reveal">
+    <p>This research note is a companion to the Codec Theory document. It is not the final word on the Born rule within the Nusofian framework: it is a first conditional derivation, with its inputs declared and its open problems listed. The derivation is sound within the Assumptions Ledger; the ledger itself is the next problem. Readers who wish to attack any of the five open problems listed in §7.2 are invited to do so — in the spirit of the framework, which holds that knowledge advances when different codecs reduce the intersection of their kernels.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-brand">NUSOFIA</div>
+  <p>Phi Kosmos Developments LLC · Abu Dhabi · 2026</p>
+  <div class="footer-social">
+    <a href="https://x.com/NusofiaHQ" target="_blank">X / Twitter</a>
+    <a href="https://www.linkedin.com/company/nusofia" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
