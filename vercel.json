@@ -17,6 +17,10 @@
       "destination": "/auag.html"
     },
     {
+      "source": "/born-rule.html",
+      "destination": "/born-rule.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
