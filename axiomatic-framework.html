@@ -95,9 +95,9 @@
 <div class="hero">
     <div class="hero-label">Formal Extension</div>
     <h1>Axiomatic Framework of the <em>Codec Theory</em></h1>
-    <div class="subtitle">Formal foundations for a theory of ontological reduction. Six axioms. Six derivable propositions. Four falsifiability conditions. One epistemic boundary.</div>
+    <div class="subtitle">Formal foundations for a theory of ontological reduction. Six axioms. Seven derivable propositions. Three corollaries. Four falsifiability conditions. One epistemic boundary.</div>
     <div class="meta">Michele Zampighi · March 2026</div>
-    <div class="vbadge">Version 1.1 — Post-formal analysis revision</div>
+    <div class="vbadge">Version 1.2 — Proposition 3 corrected (incomparability condition); notation reconciled across companion documents</div>
 </div>
 <div class="content">
 <div class="section"><span class="sn">Section 0</span><h2>Methodological Note</h2>
@@ -170,8 +170,8 @@
 <p>The intensity of subjective experience is proportional to the complexity of the self-model being maintained. Shame corrects the social model of the self. Doubt corrects the epistemic model. Existential anguish corrects the ontological model.</p>
 <p class="dv">Derivation: from Axiom 5. Each recursion level generates a gap level. Each gap level requires a feedback signal. More levels, more signals, more experience.</p></div>
 <div class="pr"><div class="pr-l">Proposition 3</div><div class="pr-t">Dialogue Between Codecs Produces Knowledge</div>
-<p>Let ~<sub>F₁</sub> and ~<sub>F₂</sub> be the equivalence relations of two different codecs on the same World W. If ~<sub>F₁</sub> ≠ ~<sub>F₂</sub>, then ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> ⊂ ~<sub>F₁</sub> and ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> ⊂ ~<sub>F₂</sub> (strict inclusion). Each new codec with a distinct equivalence relation narrows the space of the indistinguishable.</p>
-<p class="dv">Derivation: from Axioms 1–3. Codecs with different B and architectures typically produce different equivalence relations. The space of the unknown narrows progressively without ever vanishing. Note: two different codecs may in principle have the same equivalence relation; in that case they are epistemically redundant.</p></div>
+<p>Let ~<sub>F₁</sub> and ~<sub>F₂</sub> be the equivalence relations of two codecs on the same World W. If ~<sub>F₁</sub> and ~<sub>F₂</sub> are <strong>incomparable</strong> — neither contains the other — then ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> ⊂ ~<sub>F₁</sub> and ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> ⊂ ~<sub>F₂</sub> (strict inclusion in both). If instead one relation refines the other (~<sub>F₁</sub> ⊊ ~<sub>F₂</sub>), the intersection equals the finer relation: the finer codec subsumes the coarser, and the coarser is epistemically redundant. Dialogue produces knowledge only between incomparable codecs — not merely different ones.</p>
+<p class="dv">Derivation: from Axioms 1–3. Incomparability yields a pair (a,b) with a ~<sub>F₂</sub> b but a ≁<sub>F₁</sub> b, and a pair (c,d) with c ~<sub>F₁</sub> d but c ≁<sub>F₂</sub> d; hence the intersection is strict in both relations. Mere difference (~<sub>F₁</sub> ≠ ~<sub>F₂</sub>) is not sufficient: nested relations — the natural case for codecs of the same architecture with different B (Axiom 3) — satisfy difference while the finer codec's space of the indistinguishable does not narrow. Two codecs with the same equivalence relation remain epistemically redundant. The space of the unknown narrows progressively without ever vanishing. <em>Corrected in v1.2 — an instance of the Public Challenge (August 2026).</em></p></div>
 <div class="pr"><div class="pr-l">Proposition 4</div><div class="pr-t">Variability of Coordinates</div>
 <p>Observers with the same W but different B perceive structurally different coordinates. The dimensionality of space, the linearity of time, and the locality of causality are functions of B, not properties of W.</p>
 <p class="dv">Derivation: from Axiom 4. Different B constraints generate different translations of σ. An intelligence with radically higher B would not necessarily perceive three spatial dimensions and linear time.</p></div>
@@ -223,7 +223,7 @@
 <p>F: W → E satisfies: (i) F(g ∘ f) = F(g) ∘ F(f); (ii) ∃ a ≠ b with F(a) = F(b); (iii) ∃ f ≠ g with F(f) = F(g); (iv) F is not full — coordinates have no preimage.</p>
 <p class="fm"><strong>Note on B.</strong> B parameterizes admissible functors but is not internal to the categorical structure. |Ob(W)/~<sub>F</sub>| is an increasing function of B.</p>
 <h3>A.3 Equivalence Relation and Dialogue</h3>
-<p>~<sub>F</sub> on Ob(W): a ~<sub>F</sub> b ⟺ F(a) = F(b). We use "congruence on objects," not "kernel." If ~<sub>F₁</sub> ≠ ~<sub>F₂</sub>, then ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> ⊂ ~<sub>F₁</sub> (strict). Proof: ∃ (a,b) with a ~<sub>F₁</sub> b but a ≁<sub>F₂</sub> b. Dialogue is defined only between codecs sharing the same World.</p>
+<p>~<sub>F</sub> on Ob(W): a ~<sub>F</sub> b ⟺ F(a) = F(b). We use "congruence on objects," not "kernel." If ~<sub>F₁</sub> and ~<sub>F₂</sub> are incomparable (~<sub>F₁</sub> ⊄ ~<sub>F₂</sub> and ~<sub>F₂</sub> ⊄ ~<sub>F₁</sub>), then ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> ⊂ ~<sub>F₁</sub> and ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> ⊂ ~<sub>F₂</sub>, both strict. Proof: incomparability gives (a,b) with a ~<sub>F₂</sub> b, a ≁<sub>F₁</sub> b (strictness in ~<sub>F₂</sub>) and (c,d) with c ~<sub>F₁</sub> d, c ≁<sub>F₂</sub> d (strictness in ~<sub>F₁</sub>). If ~<sub>F₁</sub> ⊊ ~<sub>F₂</sub>, then ~<sub>F₁</sub> ∩ ~<sub>F₂</sub> = ~<sub>F₁</sub> and the coarser codec is epistemically redundant (v1.2 correction). Dialogue is defined only between codecs sharing the same World.</p>
 <h3>A.4 Connective Structure and Coordinates</h3>
 <p>σ in W is the minimal inference from the predictive efficacy of coordinates. Not a metric, not a classical topology. The additional structures of E — metric topology (space), ordering (time), causal relation — are the image of σ through F.</p>
 <h3>A.5 Reflexivity</h3>
@@ -251,7 +251,7 @@
 <div class="op"><span class="op-n">VII.</span> <strong>Definition of the Codec Region C</strong><br>Proposition 7 refers to the subcategory W|<sub>C</sub>, where C is the region of W that realises the codec. The framework identifies C indirectly: C is the domain on which F operates. This is extensionally circular — F defines C and C defines F. An independent criterion for delimiting C (topological, algebraic, or information-theoretic) would break the circularity and transform Proposition 7 from a structural observation into a constructive result.</div>
 
 
-<div class="dl"><p>Download the complete Axiomatic Framework as a formatted document.</p><a href="https://oazbnyqqzezzjxaztdzr.supabase.co/storage/v1/object/public/documents/Nusofia_Framework_Assiomatico_v1.1.docx" class="btn" target="_blank">Download DOCX</a></div>
+<div class="dl"><p>Download the complete Axiomatic Framework as a formatted document.</p><a href="/Nusofia_Framework_Assiomatico_v1.2.pdf" class="btn" target="_blank">Download PDF (v1.2)</a></div>
 </div>
 <footer><div class="fb">NUSOFIA</div><p>© 2026 Phi Kosmos Developments LLC · Abu Dhabi · The corpus is free</p><div class="fs"><a href="https://x.com/NusofiaHQ" target="_blank">X / Twitter</a> <a href="https://www.linkedin.com/company/nusofia" target="_blank">LinkedIn</a></div></footer>
 </body>
